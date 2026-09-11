@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-
-const LOGO = 'https://lh3.googleusercontent.com/aida/AEtjO1XX8GoStUNmA3oqNHbYFP3jaTtmudxfNBIA6sznRB5gYT5qoGAG68xvMznWmyzXSpX3VcnfDPq4k1-z4Xfd7EBwl3x3FZ_LIXgGoBKrn2is6J8UfRCT3pl-27kP5IbL2eJJIA9i7754tDdoCZMZ5m2ASPWyBUWvEw_BM0m9J03aP21mPHKyATIXtunAhxfDOWRO9BBweZIm0jZ6EnPYLlGAnfVl4JgPKmmYcFpmvn6Q3srcU2jrKpUymf4'
+import Logo from './Logo'
 
 export default function Footer() {
     return (
@@ -20,7 +19,9 @@ export default function Footer() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2.5rem', paddingBottom: '3rem', borderBottom: '1px solid rgba(53,53,52,0.4)' }}>
                     {/* Brand */}
                     <div>
-                        <img src={LOGO} alt="Executive Hideaway" style={{ height: '2.25rem', objectFit: 'contain', marginBottom: '1rem' }} />
+                        <div style={{ marginBottom: '1rem' }}>
+                            <Logo height="3.5rem" />
+                        </div>
                         <p className="body-sm text-on-surface-variant" style={{ lineHeight: 1.7 }}>
                             An ultra-refined sanctuary in Kileleshwa, Nairobi, dedicated to bespoke executive styling and restorative holistic wellness treatments.
                         </p>

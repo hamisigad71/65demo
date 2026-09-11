@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-
-const LOGO = 'https://lh3.googleusercontent.com/aida/AEtjO1XX8GoStUNmA3oqNHbYFP3jaTtmudxfNBIA6sznRB5gYT5qoGAG68xvMznWmyzXSpX3VcnfDPq4k1-z4Xfd7EBwl3x3FZ_LIXgGoBKrn2is6J8UfRCT3pl-27kP5IbL2eJJIA9i7754tDdoCZMZ5m2ASPWyBUWvEw_BM0m9J03aP21mPHKyATIXtunAhxfDOWRO9BBweZIm0jZ6EnPYLlGAnfVl4JgPKmmYcFpmvn6Q3srcU2jrKpUymf4'
+import Logo from './Logo'
 
 const navLinks = [
     { to: '/', label: 'Home' },
@@ -34,11 +33,7 @@ export default function Navbar() {
                 <div className="container navbar-inner">
                     {/* Brand */}
                     <Link to="/" className="navbar-brand">
-                        <img src={LOGO} alt="Executive Hideaway" className="navbar-logo" />
-                        <div className="navbar-brand-text">
-                            <div className="headline-sm text-primary navbar-title">EXECUTIVE HIDEAWAY</div>
-                            <div className="label-md text-on-surface-variant navbar-subtitle">BARBER &amp; SPA • KILELESHWA</div>
-                        </div>
+                        <Logo height="2.5rem" />
                     </Link>
 
                     {/* Desktop nav */}
