@@ -552,3 +552,30 @@ th { text-align: left; }
   50% { transform: translateY(-8px); }
 }
 .animate-bounce { animation: bounce 1.5s ease-in-out infinite; }
+
+/* View More toggle */
+.view-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.75rem 0;
+  margin-top: 0.25rem;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--outline-variant);
+  color: var(--primary);
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.view-more-btn:hover {
+  color: var(--secondary);
+  background: rgba(236,194,70,0.04);
+}
+

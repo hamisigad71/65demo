@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const HERO_BG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBuyaSQjJKSzKDuPYgHsO0aYBZV9-Q55KKbuRlKkc5Vef9SIHIpteKkGUAvmYnl2tyuaG9BWEYThLl3iE3sCdwqkKl5HdcBpwb0yMm4g6gZ4-likEKySzX0RMC0s3c2Nb-ywjfw6qq21J7v20iVQo2cCwWFTl-s79Cpv8LucW62ocWjDVD4N5hsWGC-6C9NBqy3Cq2qdyxrIdR4EnXa6mXeDf_dP4mnSaPm7TUg9an7I-uFWccN4Xm0"
 const BARBER_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBNx5HmYtOjYk5u233w4nB0V66KcmkD81M3DckYNQuE-wnH7_eC6Cv1G0zbIEMQaCjcF0r0NmQdLZqmGtAGXYJ6N2E4vAFpjKpBqA4BdbPVSmwDRT8RU0jIJ1plVDJIT_EUF829HxQjNPFn-CCZHi1neArVSexgcyU8I3GJIC0b1hfspcgy1brw5Z0eKS4YfJr6cJt4qMpJNb_88XypIgox9YPA5-1MFqpQxqu5DlJDjwahKwplJ26-"
@@ -41,14 +42,17 @@ const testimonials = [
 ]
 
 export default function Home() {
+    const [barberExpanded, setBarberExpanded] = useState(false)
+    const [spaExpanded, setSpaExpanded] = useState(false)
+
     return (
         <div>
             {/* ── 1. HERO ─────────────────────────────────────────── */}
             <section style={{ position: 'relative', minHeight: '92vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginTop: '-5rem', overflow: 'hidden' }}>
                 {/* Backdrop */}
                 <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-                    <div className="img-cover" style={{ backgroundImage: `url('${HERO_BG}')`, transform: 'scale(1.05)', transition: 'transform 1s ease-out' }}></div>
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.25) 100%)' }}></div>
+                    <div className="img-cover hero-bg" style={{ backgroundImage: `url('${HERO_BG}')`, transition: 'transform 1s ease-out' }}></div>
+                    <div className="hero-overlay" style={{ position: 'absolute', inset: 0 }}></div>
                     <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at top right, rgba(236,194,70,0.1), transparent)' }}></div>
                 </div>
 
@@ -72,9 +76,9 @@ export default function Home() {
                             Premium barbering, bespoke spa rituals, and wellness experiences architected exclusively for the discerning modern gentleman. An intimate retreat away from the capital's bustle.
                         </p>
 
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem', marginBottom: '1rem' }}>
-                            <Link to="/services" className="btn-primary">Book An Appointment</Link>
-                            <a href="#services" className="btn-ghost">Explore Services</a>
+                        <div style={{ display: 'flex', gap: '0.875rem', marginBottom: '1rem' }}>
+                            <Link to="/services" className="btn-primary" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Book An Appointment</Link>
+                            <a href="#services" className="btn-ghost" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Explore Services</a>
                         </div>
 
                         {/* Live */}
@@ -165,7 +169,7 @@ export default function Home() {
                                 <div style={{ height: '1px', background: 'linear-gradient(to right, var(--primary), rgba(236,194,70,0.15), transparent)' }}></div>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                {barberServices.map((s, i) => (
+                                {(barberExpanded ? barberServices : barberServices.slice(0, 2)).map((s, i) => (
                                     <div key={s.name}
                                         style={{ position: 'relative', padding: '1.75rem 0', borderBottom: '1px solid var(--outline-variant)', transition: 'padding-left 0.3s', paddingLeft: '0', cursor: 'default' }}
                                         onMouseEnter={e => { e.currentTarget.style.paddingLeft = '1rem'; e.currentTarget.querySelector('.svc-bar').style.opacity = '1'; }}
@@ -181,6 +185,10 @@ export default function Home() {
                                         <p className="body-sm text-on-surface-variant" style={{ lineHeight: 1.7, margin: '0 0 0 2.5rem' }}>{s.desc}</p>
                                     </div>
                                 ))}
+                                <button onClick={() => setBarberExpanded(!barberExpanded)} className="view-more-btn">
+                                    <span>{barberExpanded ? 'View Less' : `View ${barberServices.length - 2} More Services`}</span>
+                                    <span className="material-symbols-outlined" style={{ fontSize: '18px', transition: 'transform 0.3s', transform: barberExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>expand_more</span>
+                                </button>
                             </div>
                             <a href="https://wa.me/254719506995" target="_blank" rel="noopener"
                                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', marginTop: '2.5rem', padding: '0.875rem', border: '1px solid rgba(236,194,70,0.35)', borderRadius: '2px', color: 'var(--primary)', textDecoration: 'none', transition: 'all 0.25s', background: 'transparent' }}
@@ -203,7 +211,7 @@ export default function Home() {
                                 <div style={{ height: '1px', background: 'linear-gradient(to right, var(--primary), rgba(236,194,70,0.15), transparent)' }}></div>
                             </div>
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                {spaServices.map((s, i) => (
+                                {(spaExpanded ? spaServices : spaServices.slice(0, 2)).map((s, i) => (
                                     <div key={s.name}
                                         style={{ position: 'relative', padding: '1.75rem 0', borderBottom: '1px solid var(--outline-variant)', transition: 'padding-left 0.3s', paddingLeft: '0', cursor: 'default' }}
                                         onMouseEnter={e => { e.currentTarget.style.paddingLeft = '1rem'; e.currentTarget.querySelector('.svc-bar').style.opacity = '1'; }}
@@ -219,6 +227,10 @@ export default function Home() {
                                         <p className="body-sm text-on-surface-variant" style={{ lineHeight: 1.7, margin: '0 0 0 2.5rem' }}>{s.desc}</p>
                                     </div>
                                 ))}
+                                <button onClick={() => setSpaExpanded(!spaExpanded)} className="view-more-btn">
+                                    <span>{spaExpanded ? 'View Less' : `View ${spaServices.length - 2} More Services`}</span>
+                                    <span className="material-symbols-outlined" style={{ fontSize: '18px', transition: 'transform 0.3s', transform: spaExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}>expand_more</span>
+                                </button>
                             </div>
                             <a href="https://wa.me/254719506995" target="_blank" rel="noopener"
                                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', marginTop: '2.5rem', padding: '0.875rem', border: '1px solid rgba(236,194,70,0.35)', borderRadius: '2px', color: 'var(--primary)', textDecoration: 'none', transition: 'all 0.25s', background: 'transparent' }}
@@ -242,7 +254,7 @@ export default function Home() {
                         <h2 className="headline-lg text-light-primary" style={{ marginBottom: '1rem' }}>Designed For Those Who Expect More</h2>
                         <p className="body-md text-on-surface-variant">We have reconstructed the modern grooming session into an uninterrupted executive retreat.</p>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }} className="features-grid">
                         {features.map(f => (
                             <div key={f.num} className="feature-card" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                                 <div>
@@ -304,7 +316,16 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <style>{`@media(min-width:640px){#discreet-card{display:block!important}}`}</style>
+                <style>{`
+                  .hero-bg { transform: scale(1); }
+                  .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.1) 100%); }
+                  @media(min-width:640px){
+                    #discreet-card{display:block!important}
+                    .features-grid{grid-template-columns:repeat(4,1fr)!important;gap:2rem!important}
+                    .hero-bg { transform: scale(1.05); }
+                    .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.25) 100%); }
+                  }
+                `}</style>
             </section>
 
             {/* ── 6. TESTIMONIALS ─────────────────────────────────── */}
