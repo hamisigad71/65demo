@@ -646,3 +646,103 @@ th { text-align: left; }
   }
 }
 
+/* Architectural Luxury Mobile Dock Navbar */
+.mobile-dock-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 99;
+  pointer-events: auto;
+  opacity: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  background: color-mix(in srgb, var(--surface-dark) 95%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(236, 194, 70, 0.2);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.mobile-dock-nav.dock-hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mobile-dock-nav.dock-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-dock-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.6rem 0.5rem 0.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mobile-dock-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.625rem;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.mobile-dock-tab .dock-icon {
+  font-size: 20px;
+  transition: color 0.25s ease;
+}
+
+.mobile-dock-tab.active {
+  color: var(--primary);
+}
+
+.mobile-dock-tab .active-line {
+  position: absolute;
+  top: -0.6rem;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.mobile-dock-book {
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  color: var(--primary) !important;
+  padding: 0.35rem 0.75rem !important;
+  background: rgba(236, 194, 70, 0.05);
+  transition: background 0.25s ease, transform 0.15s ease !important;
+}
+
+.mobile-dock-book .dock-icon,
+.mobile-dock-book .mobile-dock-label {
+  color: var(--primary) !important;
+}
+
+.mobile-dock-book:active {
+  background: rgba(236, 194, 70, 0.15);
+  transform: scale(0.96);
+}
+
+@media (min-width: 768px) {
+  .mobile-dock-nav {
+    display: none !important;
+  }
+}
+

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import FloatingBottomNav from './components/FloatingBottomNav'
 import Home from './pages/Home'
 import BarberStudio from './pages/BarberStudio'
 import SpaWellness from './pages/SpaWellness'
@@ -20,6 +21,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <FloatingBottomNav />
     </BrowserRouter>
   )
 }
