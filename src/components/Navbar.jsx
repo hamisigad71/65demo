@@ -232,7 +232,7 @@ export default function Navbar() {
           pointer-events: auto;
         }
         .mobile-drawer-inner {
-          background: color-mix(in srgb, var(--surface-dark) 96%, transparent);
+          background: color-mix(in srgb, var(--surface) 96%, transparent);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-bottom: 1px solid var(--gold-border);

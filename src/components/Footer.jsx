@@ -26,26 +26,29 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    {/* Navigation */}
-                    <div>
-                        <h4 className="label-lg text-primary" style={{ marginBottom: '1.25rem', letterSpacing: '0.18em' }}>NAVIGATION</h4>
-                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
-                            {[['/', 'Home'], ['/barber', 'The Barber Atelier'], ['/spa', 'Private Spa Suites'], ['/services', 'Services Menu']].map(([to, label]) => (
-                                <li key={to} className="body-sm">
-                                    <Link to={to} className="text-on-surface-variant nav-link">{label}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {/* Navigation + Services side-by-side on mobile (2 columns), individual grid columns on desktop */}
+                    <div className="footer-nav-services-grid">
+                        {/* Navigation */}
+                        <div>
+                            <h4 className="label-lg text-primary" style={{ marginBottom: '1.25rem', letterSpacing: '0.18em' }}>NAVIGATION</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+                                {[['/', 'Home'], ['/barber', 'The Barber Atelier'], ['/spa', 'Private Spa Suites'], ['/services', 'Services Menu']].map(([to, label]) => (
+                                    <li key={to} className="body-sm">
+                                        <Link to={to} className="text-on-surface-variant nav-link">{label}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    {/* Services */}
-                    <div>
-                        <h4 className="label-lg text-primary" style={{ marginBottom: '1.25rem', letterSpacing: '0.18em' }}>SERVICES</h4>
-                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
-                            {['Executive Haircut', 'Beard Sculpting', 'Deep Tissue Massage', 'Facial Therapy', 'Royal Hot Towel Shave', 'Executive Detox Pedicure'].map(s => (
-                                <li key={s} className="body-sm text-on-surface-variant">{s}</li>
-                            ))}
-                        </ul>
+                        {/* Services */}
+                        <div>
+                            <h4 className="label-lg text-primary" style={{ marginBottom: '1.25rem', letterSpacing: '0.18em' }}>SERVICES</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
+                                {['Executive Haircut', 'Beard Sculpting', 'Deep Tissue Massage', 'Facial Therapy', 'Royal Hot Towel Shave', 'Executive Detox Pedicure'].map(s => (
+                                    <li key={s} className="body-sm text-on-surface-variant">{s}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
 
                     {/* Contact */}

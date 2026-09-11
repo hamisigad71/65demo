@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 const HERO_BG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBuyaSQjJKSzKDuPYgHsO0aYBZV9-Q55KKbuRlKkc5Vef9SIHIpteKkGUAvmYnl2tyuaG9BWEYThLl3iE3sCdwqkKl5HdcBpwb0yMm4g6gZ4-likEKySzX0RMC0s3c2Nb-ywjfw6qq21J7v20iVQo2cCwWFTl-s79Cpv8LucW62ocWjDVD4N5hsWGC-6C9NBqy3Cq2qdyxrIdR4EnXa6mXeDf_dP4mnSaPm7TUg9an7I-uFWccN4Xm0"
 const BARBER_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBNx5HmYtOjYk5u233w4nB0V66KcmkD81M3DckYNQuE-wnH7_eC6Cv1G0zbIEMQaCjcF0r0NmQdLZqmGtAGXYJ6N2E4vAFpjKpBqA4BdbPVSmwDRT8RU0jIJ1plVDJIT_EUF829HxQjNPFn-CCZHi1neArVSexgcyU8I3GJIC0b1hfspcgy1brw5Z0eKS4YfJr6cJt4qMpJNb_88XypIgox9YPA5-1MFqpQxqu5DlJDjwahKwplJ26-"
@@ -44,6 +44,20 @@ const testimonials = [
 export default function Home() {
     const [barberExpanded, setBarberExpanded] = useState(false)
     const [spaExpanded, setSpaExpanded] = useState(false)
+    const [activeTestimonial, setActiveTestimonial] = useState(0)
+    const testimonialRef = useRef(null)
+
+    const scrollToTestimonial = (index) => {
+        if (index < 0 || index >= testimonials.length) return
+        setActiveTestimonial(index)
+        if (testimonialRef.current) {
+            const cardWidth = testimonialRef.current.offsetWidth * 0.86
+            testimonialRef.current.scrollTo({
+                left: cardWidth * index,
+                behavior: 'smooth'
+            })
+        }
+    }
 
     return (
         <div>
@@ -331,55 +345,232 @@ export default function Home() {
             {/* ── 6. TESTIMONIALS ─────────────────────────────────── */}
             <section className="section bg-surface-dark">
                 <div className="container">
-                    <div style={{ textAlign: 'center', maxWidth: '40rem', margin: '0 auto 5rem' }}>
+                    <div style={{ textAlign: 'center', maxWidth: '40rem', margin: '0 auto 4rem' }}>
                         <span className="label-md text-primary" style={{ letterSpacing: '0.25em', display: 'block', marginBottom: '1rem' }}>CLIENT IMPRESSIONS</span>
                         <h2 className="headline-lg text-light-primary">Endorsed by Nairobi's Leaders</h2>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-                        {testimonials.map(t => (
-                            <div key={t.name} className="testimonial-card">
-                                <div>
-                                    <span className="headline-lg text-primary" style={{ opacity: 0.4, fontSize: '48px', lineHeight: 1 }}>"</span>
-                                    <p className="body-md text-light-primary" style={{ fontStyle: 'italic', lineHeight: 1.7, marginTop: '-0.5rem' }}>{t.quote}</p>
-                                </div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', paddingTop: '2rem' }}>
-                                    <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%', backgroundColor: 'var(--surface-variant)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', fontWeight: 700 }}
-                                        className="label-md">{t.initials}</div>
+
+                    {/* Testimonials Carousel / Grid */}
+                    <div style={{ position: 'relative' }}>
+                        <div
+                            ref={testimonialRef}
+                            className="testimonials-grid"
+                            onScroll={(e) => {
+                                const container = e.currentTarget
+                                const scrollPos = container.scrollLeft
+                                const cardWidth = container.offsetWidth * 0.86
+                                if (cardWidth > 0) {
+                                    const index = Math.round(scrollPos / cardWidth)
+                                    setActiveTestimonial(Math.max(0, Math.min(testimonials.length - 1, index)))
+                                }
+                            }}
+                        >
+                            {testimonials.map(t => (
+                                <div key={t.name} className="testimonial-card">
                                     <div>
-                                        <div className="title-md text-light-primary">{t.name}</div>
-                                        <div className="label-md text-on-surface-variant">{t.role}</div>
+                                        <span className="headline-lg text-primary" style={{ opacity: 0.4, fontSize: '48px', lineHeight: 1 }}>"</span>
+                                        <p className="body-md text-light-primary" style={{ fontStyle: 'italic', lineHeight: 1.7, marginTop: '-0.5rem' }}>{t.quote}</p>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', paddingTop: '2rem' }}>
+                                        <div style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%', backgroundColor: 'var(--surface-variant)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', fontWeight: 700 }}
+                                            className="label-md">{t.initials}</div>
+                                        <div>
+                                            <div className="title-md text-light-primary">{t.name}</div>
+                                            <div className="label-md text-on-surface-variant">{t.role}</div>
+                                        </div>
                                     </div>
                                 </div>
+                            ))}
+                        </div>
+
+                        {/* Mobile Carousel Controls (Dots & Arrows) */}
+                        <div className="testimonial-carousel-controls" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem', padding: '0 0.5rem' }}>
+                            {/* Prev Button */}
+                            <button
+                                onClick={() => scrollToTestimonial(activeTestimonial - 1)}
+                                disabled={activeTestimonial === 0}
+                                style={{
+                                    background: 'var(--surface-container)',
+                                    border: '1px solid var(--outline-variant)',
+                                    borderRadius: '50%',
+                                    width: '2.5rem',
+                                    height: '2.5rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: activeTestimonial === 0 ? 'var(--on-surface-variant)' : 'var(--primary)',
+                                    opacity: activeTestimonial === 0 ? 0.4 : 1,
+                                    cursor: activeTestimonial === 0 ? 'default' : 'pointer'
+                                }}
+                            >
+                                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>arrow_back</span>
+                            </button>
+
+                            {/* Dots */}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+                                {testimonials.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => scrollToTestimonial(idx)}
+                                        style={{
+                                            width: idx === activeTestimonial ? '1.5rem' : '0.5rem',
+                                            height: '0.5rem',
+                                            borderRadius: '9999px',
+                                            backgroundColor: idx === activeTestimonial ? 'var(--primary)' : 'var(--outline-variant)',
+                                            border: 'none',
+                                            padding: 0,
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                        aria-label={`Go to slide ${idx + 1}`}
+                                    />
+                                ))}
                             </div>
-                        ))}
+
+                            {/* Next Button */}
+                            <button
+                                onClick={() => scrollToTestimonial(activeTestimonial + 1)}
+                                disabled={activeTestimonial === testimonials.length - 1}
+                                style={{
+                                    background: 'var(--surface-container)',
+                                    border: '1px solid var(--outline-variant)',
+                                    borderRadius: '50%',
+                                    width: '2.5rem',
+                                    height: '2.5rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: activeTestimonial === testimonials.length - 1 ? 'var(--on-surface-variant)' : 'var(--primary)',
+                                    opacity: activeTestimonial === testimonials.length - 1 ? 0.4 : 1,
+                                    cursor: activeTestimonial === testimonials.length - 1 ? 'default' : 'pointer'
+                                }}
+                            >
+                                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>arrow_forward</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </div >
+            </section >
 
             {/* ── 7. MEMBERSHIP CTA ───────────────────────────────── */}
             <section className="section bg-surface-container-lowest" style={{ padding: '5rem 0' }}>
                 <div className="container">
-                    <div style={{ position: 'relative', borderRadius: '12px', background: 'linear-gradient(to right, var(--surface-dark), var(--surface-container-low), var(--surface-dark))', padding: '2.5rem', boxShadow: '0 24px 64px rgba(0,0,0,0.4)', overflow: 'hidden', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '2.5rem' }}>
-                        <div style={{ position: 'absolute', right: '-6rem', top: '-6rem', width: '24rem', height: '24rem', borderRadius: '50%', background: 'rgba(236,194,70,0.05)', filter: 'blur(48px)', pointerEvents: 'none' }}></div>
-                        <div style={{ maxWidth: '40rem', zIndex: 1 }}>
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.25rem 0.75rem', borderRadius: '2px', background: 'rgba(236,194,70,0.1)', marginBottom: '1rem' }}>
-                                <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px' }}>stars</span>
-                                <span className="label-md text-primary" style={{ letterSpacing: '0.18em' }}>VIP PRIVILEGE PROGRAM</span>
+                    <div style={{
+                        position: 'relative',
+                        borderRadius: '16px',
+                        background: 'linear-gradient(135deg, var(--surface-container-high) 0%, var(--surface-container-low) 50%, var(--surface-dark) 100%)',
+                        border: '1px solid var(--gold-border)',
+                        boxShadow: '0 24px 64px rgba(0,0,0,0.5), 0 0 40px rgba(201,162,39,0.08)',
+                        overflow: 'hidden'
+                    }}>
+                        {/* Ambient glow background effect */}
+                        <div style={{ position: 'absolute', right: '-4rem', top: '-4rem', width: '28rem', height: '28rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(236,194,70,0.12) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
+
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'center', position: 'relative', zIndex: 1, padding: '3rem 2.5rem' }}>
+
+                            {/* Left Side: Content */}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                {/* Badge */}
+                                <div>
+                                    <div style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '0.625rem',
+                                        padding: '0.4rem 1rem',
+                                        borderRadius: '9999px',
+                                        background: 'rgba(236,194,70,0.1)',
+                                        border: '1px solid rgba(236,194,70,0.25)',
+                                        backdropFilter: 'blur(8px)'
+                                    }}>
+                                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px', fontVariationSettings: "'FILL' 1" }}>stars</span>
+                                        <span className="label-md text-primary" style={{ letterSpacing: '0.2em' }}>VIP PRIVILEGE PROGRAM</span>
+                                    </div>
+                                </div>
+
+                                {/* Headline */}
+                                <h2 className="headline-lg text-light-primary" style={{ margin: 0, lineHeight: 1.25 }}>
+                                    Make Executive Grooming<br />
+                                    <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400 }}>A Non-Negotiable Ritual</em>
+                                </h2>
+
+                                <p className="body-md text-on-surface-variant" style={{ lineHeight: 1.7, margin: 0 }}>
+                                    Join the Executive Hideaway inner circle and unlock guaranteed preferred booking windows, complimentary guest passes, priority access to private booths, and tailored quarterly wellness regiments.
+                                </p>
+
+                                {/* Perks List */}
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
+                                    {[
+                                        'Guaranteed Priority Reservations & Zero Wait Time',
+                                        'Private Booth Access & Premium Beverage Privileges',
+                                        'Complimentary VIP Guest Passes & Quarterly Treatments'
+                                    ].map(perk => (
+                                        <div key={perk} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                            <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px', fontVariationSettings: "'FILL' 1" }}>verified</span>
+                                            <span className="body-sm text-light-primary" style={{ fontWeight: 500 }}>{perk}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* Action Button */}
+                                <div style={{ paddingTop: '1rem' }}>
+                                    <a
+                                        href="https://wa.me/254719506995"
+                                        target="_blank"
+                                        rel="noopener"
+                                        className="btn-primary"
+                                        style={{
+                                            padding: '1.1rem 2.25rem',
+                                            boxShadow: '0 0 24px rgba(201,162,39,0.3)',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: '0.75rem'
+                                        }}
+                                    >
+                                        <span>EXPLORE MEMBERSHIP</span>
+                                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
+                                    </a>
+                                </div>
                             </div>
-                            <h2 className="headline-lg text-light-primary" style={{ marginBottom: '1rem' }}>Make Executive Grooming A Ritual</h2>
-                            <p className="body-lg text-on-surface-variant" style={{ lineHeight: 1.7 }}>
-                                Join the Executive Hideaway community and unlock guaranteed preferred booking windows, complimentary guest passes, priority access to private booths, and tailored quarterly wellness regiments.
-                            </p>
+
+                            {/* Right Side: Embedded Luxury Image Card */}
+                            <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '22rem', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(236,194,70,0.3)', boxShadow: '0 16px 40px rgba(0,0,0,0.6)' }}>
+                                <div className="img-cover" style={{ backgroundImage: `url('${LOUNGE_IMG}')`, height: '100%', minHeight: '22rem', position: 'relative', transition: 'transform 0.8s ease' }}>
+                                    {/* Overlay */}
+                                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(19,19,19,0.85) 0%, rgba(19,19,19,0.2) 60%, transparent 100%)' }} />
+
+                                    {/* Floating Tier Card Tag */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '1.25rem',
+                                        right: '1.25rem',
+                                        background: 'rgba(19,19,19,0.85)',
+                                        backdropFilter: 'blur(12px)',
+                                        border: '1px solid var(--primary)',
+                                        padding: '0.4rem 0.875rem',
+                                        borderRadius: '4px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem'
+                                    }}>
+                                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '16px' }}>workspace_premium</span>
+                                        <span className="label-md text-primary" style={{ letterSpacing: '0.15em', fontSize: '10px' }}>BLACK TIER MEMBER</span>
+                                    </div>
+
+                                    {/* Bottom Image Caption */}
+                                    <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
+                                        <div className="headline-sm text-light-primary" style={{ marginBottom: '0.25rem' }}>The Executive Lounge</div>
+                                        <div className="body-sm text-on-surface-variant">Private booths &amp; single malt refreshers reserved for members</div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <a href="https://wa.me/254719506995" target="_blank" rel="noopener" className="btn-primary" style={{ zIndex: 1, padding: '1.25rem 2.5rem', boxShadow: '0 0 32px rgba(201,162,39,0.2)' }}>
-                            EXPLORE MEMBERSHIP
-                        </a>
                     </div>
                 </div>
             </section>
 
             {/* ── 8. LOCATION ─────────────────────────────────────── */}
-            <section className="section bg-surface-dark">
+            < section className="section bg-surface-dark" >
                 <div className="container">
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'center' }}>
                         {/* Info column */}
@@ -442,7 +633,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     )
 }

@@ -256,10 +256,17 @@ body {
   right: 0;
   width: 100%;
   z-index: 50;
-  background: color-mix(in srgb, var(--surface-dark) 85%, transparent);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--gold-border);
+}
+
+/* Light mode: solid crisp navbar */
+:root.light-mode .navbar {
+  background: color-mix(in srgb, var(--surface) 95%, transparent);
+  border-bottom: 1px solid var(--gold-border);
+  box-shadow: 0 1px 12px rgba(0,0,0,0.06);
 }
 .navbar-inner {
   height: 5rem;
@@ -357,6 +364,14 @@ body {
   border-color: rgba(201, 162, 39, 0.5);
 }
 
+/* Light mode: no shadows on cards */
+:root.light-mode .service-card {
+  box-shadow: none;
+}
+:root.light-mode .service-card:hover {
+  box-shadow: none;
+}
+
 /* Feature cards */
 .feature-card {
   padding: 2rem;
@@ -447,6 +462,45 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* Testimonials Carousel for Mobile, Grid for Desktop */
+.testimonials-grid {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+.testimonials-grid::-webkit-scrollbar {
+  display: none;
+}
+.testimonials-grid .testimonial-card {
+  flex: 0 0 86%;
+  min-width: 0;
+  scroll-snap-align: center;
+}
+@media (min-width: 768px) {
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+    gap: 2rem;
+    padding-bottom: 0;
+  }
+  .testimonials-grid .testimonial-card {
+    flex: initial;
+  }
+  .testimonial-carousel-controls {
+    display: none !important;
+  }
+}
+
+/* Light mode: no shadow on testimonial cards */
+:root.light-mode .testimonial-card {
+  box-shadow: none;
 }
 
 /* Form inputs */
@@ -577,5 +631,18 @@ th { text-align: left; }
 .view-more-btn:hover {
   color: var(--secondary);
   background: rgba(236,194,70,0.04);
+}
+
+/* Footer Navigation & Services 2-column mobile grid */
+.footer-nav-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .footer-nav-services-grid {
+    display: contents;
+  }
 }
 
