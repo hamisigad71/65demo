@@ -225,7 +225,7 @@ export default function ServicesMenu() {
                                     border: '1px solid var(--outline-variant)',
                                     transition: 'transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease',
                                     transform: hoveredCard === s.id ? 'translateY(-6px)' : 'translateY(0)',
-                                    boxShadow: hoveredCard === s.id ? '0 20px 56px rgba(0,0,0,0.5), 0 0 0 1px rgba(236,194,70,0.2)' : '0 4px 20px rgba(0,0,0,0.25)',
+                                    boxShadow: hoveredCard === s.id ? 'var(--card-shadow-hover)' : 'var(--card-shadow)',
                                     borderColor: hoveredCard === s.id ? 'rgba(236,194,70,0.35)' : 'var(--outline-variant)',
                                 }}
                                 onMouseEnter={() => setHoveredCard(s.id)}

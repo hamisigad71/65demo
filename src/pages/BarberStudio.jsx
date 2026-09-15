@@ -57,8 +57,42 @@ export default function BarberStudio() {
                                 Master barbering tailored to the modern gentleman. Experience unmatched attention to detail, sacred hot towel rituals, and discreet hospitality inside our secluded Nairobi salon sanctuary.
                             </p>
 
+                            <style>{`
+                                @media (max-width: 639px) {
+                                    .barber-tags-grid {
+                                        display: grid !important;
+                                        grid-template-columns: repeat(2, 1fr) !important;
+                                        gap: 0.5rem !important;
+                                    }
+                                    .barber-tags-grid > div {
+                                        padding: 0.5rem 0.25rem !important;
+                                        justify-content: center;
+                                        white-space: nowrap;
+                                    }
+                                    .barber-tags-grid > div span.label-md {
+                                        font-size: 7.5px !important;
+                                        letter-spacing: 0.05em !important;
+                                    }
+                                    .barber-hero-ctas {
+                                        flex-wrap: nowrap !important;
+                                        gap: 0.5rem !important;
+                                    }
+                                    .barber-hero-ctas > a {
+                                        flex: 1 !important;
+                                        padding: 0.75rem 0.25rem !important;
+                                        font-size: 8px !important;
+                                        text-align: center !important;
+                                        justify-content: center !important;
+                                        white-space: nowrap;
+                                    }
+                                    .barber-hero-ctas span.material-symbols-outlined {
+                                        font-size: 14px !important;
+                                    }
+                                }
+                            `}</style>
+
                             {/* Feature pills */}
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+                            <div className="barber-tags-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
                                 {[
                                     { i: 'workspace_premium', l: 'Master Artisans' },
                                     { i: 'lock', l: 'Acoustic Privacy' },
@@ -72,7 +106,7 @@ export default function BarberStudio() {
                             </div>
 
                             {/* Actions */}
-                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
+                            <div className="barber-hero-ctas" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
                                 <a href="#signature" className="btn-primary" style={{ gap: '0.75rem', padding: '0.875rem 2rem' }}>
                                     Explore Signature Ritual
                                     <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
@@ -164,7 +198,18 @@ export default function BarberStudio() {
                         </p>
                     </div>
 
-                    <div style={{ background: 'var(--surface-container)', borderRadius: '16px', padding: '3.5rem', boxShadow: '0 24px 64px rgba(0,0,0,0.3)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem' }}>
+                    <style>{`
+                        @media (max-width: 639px) {
+                            .ritual-container { padding: 2rem 1.25rem !important; grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+                            .ritual-step-title { font-size: 0.95rem !important; margin-bottom: 0.15rem !important; }
+                            .ritual-step-desc { font-size: 0.8rem !important; line-height: 1.4 !important; }
+                            .ritual-card { padding: 1.5rem 1.25rem !important; }
+                            .ritual-card-title { font-size: 1.35rem !important; }
+                            .ritual-card-price { font-size: 1.35rem !important; white-space: nowrap !important; }
+                            .ritual-card-img { height: 9rem !important; }
+                        }
+                    `}</style>
+                    <div className="ritual-container" style={{ background: 'var(--surface-container)', borderRadius: '16px', padding: '3.5rem', boxShadow: '0 24px 64px rgba(0,0,0,0.3)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                                 <span className="label-md text-primary" style={{ background: 'rgba(236,194,70,0.15)', padding: '0.25rem 0.75rem', borderRadius: '9999px', letterSpacing: '0.15em' }}>5-STAGE FULL RITUAL</span>
@@ -186,27 +231,27 @@ export default function BarberStudio() {
                                         <div style={{ width: '2rem', height: '2rem', borderRadius: '50%', background: 'var(--surface-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)', flexShrink: 0, boxShadow: '0 2px 4px rgba(0,0,0,0.5)' }}
                                             className="label-lg">{step.num}</div>
                                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                                            <h4 className="title-md text-light-primary">{step.t}</h4>
-                                            <p className="body-sm text-on-surface-variant">{step.d}</p>
+                                            <h4 className="title-md text-light-primary ritual-step-title">{step.t}</h4>
+                                            <p className="body-sm text-on-surface-variant ritual-step-desc">{step.d}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        <div style={{ background: 'var(--surface-dark)', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 16px 32px rgba(0,0,0,0.4)', gap: '1.5rem' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                        <div className="ritual-card" style={{ background: 'var(--surface-dark)', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 16px 32px rgba(0,0,0,0.4)', gap: '1.5rem' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                                 <div>
                                     <div className="label-md text-on-surface-variant" style={{ letterSpacing: '0.15em' }}>COMPLETE PACKAGE</div>
-                                    <h3 className="headline-sm text-light-primary" style={{ marginTop: '0.25rem' }}>The Full Experience</h3>
+                                    <h3 className="headline-sm text-light-primary ritual-card-title" style={{ marginTop: '0.25rem' }}>The Full Experience</h3>
                                 </div>
                                 <div style={{ textAlign: 'right' }}>
                                     <div className="label-md text-on-surface-variant" style={{ letterSpacing: '0.15em' }}>FEE</div>
-                                    <div className="headline-sm text-primary">KES 6,500</div>
+                                    <div className="headline-sm text-primary ritual-card-price">KES 6,500</div>
                                 </div>
                             </div>
 
-                            <div style={{ height: '12rem', borderRadius: '8px', overflow: 'hidden', position: 'relative', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
+                            <div className="ritual-card-img" style={{ height: '12rem', borderRadius: '8px', overflow: 'hidden', position: 'relative', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
                                 <div className="img-cover" style={{ backgroundImage: `url('${FULL_CUT_IMG}')` }}></div>
                                 <div style={{ position: 'absolute', bottom: '0.75rem', left: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                     <span className="material-symbols-outlined text-primary" style={{ fontSize: '20px' }}>verified</span>

@@ -59,6 +59,10 @@ body { overscroll-behavior: none; }
   --gold-border-focus:     #C9A227;
   --gold-glow:             rgba(201, 162, 39, 0.15);
 
+  /* Card shadows */
+  --card-shadow:           0 4px 20px rgba(0,0,0,0.25);
+  --card-shadow-hover:     0 20px 56px rgba(0,0,0,0.5), 0 0 0 1px rgba(236,194,70,0.2);
+
   /* Spacing */
   --gutter-mobile: 1rem;
   --gutter-desktop: 2rem;
@@ -119,6 +123,10 @@ body { overscroll-behavior: none; }
   --gold-border:           rgba(166, 128, 20, 0.22);
   --gold-border-focus:     #A68014;
   --gold-glow:             rgba(166, 128, 20, 0.08);
+
+  /* Card shadows — none in light mode */
+  --card-shadow:           none;
+  --card-shadow-hover:     none;
 }
 
 /* Light Mode Specific Overrides */
@@ -213,12 +221,13 @@ body { overscroll-behavior: none; }
 :root.light-mode .testimonial-card {
   box-shadow: none !important;
 }
-
 :root.light-mode .service-card:hover,
 :root.light-mode article:hover,
 :root.light-mode .testimonial-card:hover {
   box-shadow: none !important;
 }
+
+
 
 /* Remove white gradient overlays / shadows on image cards in light mode */
 :root.light-mode .card-img-overlay,

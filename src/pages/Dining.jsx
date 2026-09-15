@@ -203,44 +203,63 @@ export default function Dining() {
         <div>
 
             {/* ══ 1. HERO ═══════════════════════════════════════════════ */}
-            <section className="hero-dark-theme" style={{
-                position: 'relative', minHeight: '82vh', display: 'flex',
+            <section className="hero-dark-theme dining-hero" style={{
+                position: 'relative', minHeight: '100svh', display: 'flex',
                 flexDirection: 'column', justifyContent: 'flex-end',
                 marginTop: '-5rem', overflow: 'hidden',
             }}>
-                <div className="img-cover" style={{ backgroundImage: `url('${HERO_BG}')`, position: 'absolute', inset: 0 }} />
-                <div className="hero-overlay-dark" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.65) 45%, rgba(0,0,0,0.25) 100%)' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 20% 80%, var(--gold-glow), transparent 55%)' }} />
+                {/* Background image */}
+                <div className="img-cover" style={{ backgroundImage: `url('${HERO_BG}')`, position: 'absolute', inset: 0, backgroundPosition: 'center 30%' }} />
 
-                <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '14rem', paddingBottom: '5rem' }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 1.1rem', borderRadius: '9999px', background: 'rgba(236,194,70,0.08)', backdropFilter: 'blur(12px)', border: '1px solid var(--gold-border)', marginBottom: '1.75rem' }}>
-                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '16px', fontVariationSettings: "'FILL' 1" }}>restaurant</span>
-                        <span className="label-md text-primary" style={{ letterSpacing: '0.24em' }}>THE RESORT DINING EXPERIENCE</span>
+                {/* Layered overlays for depth */}
+                <div className="hero-overlay-dark" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(10,10,10,0.82) 40%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.1) 100%)' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 20% 85%, rgba(201,162,39,0.12), transparent 55%)' }} />
+
+                {/* Gold shimmer line at bottom */}
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '1px', background: 'linear-gradient(to right, transparent, var(--gold-border), transparent)', zIndex: 3 }} />
+
+                <div className="container dining-hero-content" style={{ position: 'relative', zIndex: 2, paddingBottom: '2rem' }}>
+
+                    {/* Badge */}
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 1.1rem', borderRadius: '9999px', background: 'rgba(236,194,70,0.1)', backdropFilter: 'blur(12px)', border: '1px solid rgba(236,194,70,0.3)', marginBottom: '1.25rem' }}>
+                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '14px', fontVariationSettings: "'FILL' 1" }}>restaurant</span>
+                        <span className="label-md text-primary" style={{ letterSpacing: '0.22em', fontSize: '10px' }}>THE RESORT DINING EXPERIENCE</span>
                     </div>
 
-                    <h1 className="display-lg text-light-primary" style={{ maxWidth: '36rem', lineHeight: 1.12, marginBottom: '1.25rem' }}>
+                    <h1 className="dining-hero-title display-lg text-light-primary" style={{ lineHeight: 1.1, marginBottom: '1rem' }}>
                         Continental Cuisine &{' '}
                         <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400 }}>Bespoke Spirits</em>
                     </h1>
 
-                    <p className="body-lg text-on-surface-variant" style={{ maxWidth: '38rem', lineHeight: 1.8, marginBottom: '2.5rem' }}>
+                    <p className="dining-hero-desc body-lg text-on-surface-variant" style={{ lineHeight: 1.75, marginBottom: '2rem', opacity: 0.92 }}>
                         A culinary retreat where artisanal gastronomy, handcrafted mixology, and rare cellar vintages unite — served tableside or directly to your private suite.
                     </p>
 
-                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                        <a href="https://wa.me/254719506995" target="_blank" rel="noopener noreferrer" className="btn-primary"
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>calendar_month</span>
+                    {/* Buttons — side by side on ALL screen sizes */}
+                    <div style={{ display: 'flex', gap: '0.75rem' }}>
+                        <a href="https://wa.me/254719506995" target="_blank" rel="noopener noreferrer" className="btn-primary dining-btn-reserve"
+                            style={{ flex: 1, justifyContent: 'center', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textAlign: 'center' }}>
+                            <span className="material-symbols-outlined" style={{ fontSize: '17px' }}>calendar_month</span>
                             Reserve a Table
                         </a>
-                        <a href="#menu" className="btn-ghost">Explore Visual Menu</a>
+                        <a href="#menu" className="btn-ghost dining-btn-menu"
+                            style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>
+                            Explore Menu
+                        </a>
+                    </div>
+
+                    {/* Highlight tags — mobile only accent strip */}
+                    <div className="dining-hero-tags">
+                        {['Fine Dining', 'Craft Cocktails', 'In-Suite Service', '7AM–11PM'].map(tag => (
+                            <span key={tag} className="label-md" style={{ padding: '0.3rem 0.75rem', borderRadius: '9999px', background: 'rgba(236,194,70,0.1)', border: '1px solid rgba(236,194,70,0.2)', color: 'var(--primary)', letterSpacing: '0.1em', fontSize: '9px', whiteSpace: 'nowrap' }}>{tag}</span>
+                        ))}
                     </div>
                 </div>
 
                 {/* ── Stat bar ── */}
-                <div style={{ position: 'relative', zIndex: 2, background: 'var(--surface-container-high)', backdropFilter: 'blur(20px)', borderTop: '1px solid var(--gold-border)' }}>
-                    <div className="container" style={{ paddingTop: '1.5rem', paddingBottom: '1.5rem' }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+                <div style={{ position: 'relative', zIndex: 2, background: 'rgba(10,10,10,0.92)', backdropFilter: 'blur(20px)', borderTop: '1px solid var(--gold-border)' }}>
+                    <div className="container" style={{ paddingTop: '1.25rem', paddingBottom: '1.25rem' }}>
+                        <div className="dining-stat-grid">
                             {[
                                 ['À La Carte Menu', 'Starters, Mains & Desserts'],
                                 ['Signature Bar', 'Craft cocktails & single malts'],
@@ -248,13 +267,107 @@ export default function Dining() {
                                 ['7AM – 11PM Daily', 'All-day resort service'],
                             ].map(([title, sub]) => (
                                 <div key={title}>
-                                    <div className="title-md text-primary" style={{ marginBottom: '0.2rem', fontWeight: 600 }}>{title}</div>
-                                    <div className="body-sm text-on-surface-variant">{sub}</div>
+                                    <div className="title-md text-primary" style={{ marginBottom: '0.15rem', fontWeight: 600, fontSize: '0.9rem' }}>{title}</div>
+                                    <div className="body-sm text-on-surface-variant" style={{ fontSize: '0.78rem', opacity: 0.85 }}>{sub}</div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
+
+                <style>{`
+                    /* ── Mobile hero ─────────────────────────── */
+                    .dining-hero-content {
+                        padding-top: 7rem;
+                    }
+                    .dining-hero-title {
+                        font-size: 2.4rem !important;
+                        max-width: 100%;
+                    }
+                    .dining-hero-desc {
+                        font-size: 0.95rem !important;
+                        max-width: 100%;
+                        margin-bottom: 1.5rem !important;
+                    }
+                    .dining-btn-reserve, .dining-btn-menu {
+                        padding: 0.875rem 1rem !important;
+                        font-size: 11px !important;
+                    }
+                    .dining-hero-tags {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.5rem;
+                        margin-top: 1.25rem;
+                    }
+                    /* Stat bar: 2×2 on mobile */
+                    .dining-stat-grid {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 1rem 1.5rem;
+                    }
+
+                    /* ── Menu Cards Mobile Adjustments ───────── */
+                    @media (max-width: 639px) {
+                        .menu-grid {
+                            grid-template-columns: repeat(2, 1fr) !important;
+                            gap: 0.75rem !important;
+                        }
+                        /* Image container */
+                        .menu-grid > div > div:first-child {
+                            height: 7.5rem !important;
+                        }
+                        /* Tag */
+                        .menu-grid > div > div:first-child > span {
+                            top: 0.5rem !important; left: 0.5rem !important;
+                            padding: 0.15rem 0.4rem !important; font-size: 7px !important;
+                        }
+                        /* Content container */
+                        .menu-grid > div > div:last-child {
+                            padding: 0.75rem !important;
+                        }
+                        /* Title */
+                        .menu-grid > div > div:last-child h4 {
+                            font-size: 0.8rem !important;
+                            margin-bottom: 0.25rem !important;
+                            line-height: 1.3 !important;
+                        }
+                        /* Description */
+                        .menu-grid > div > div:last-child p {
+                            font-size: 0.65rem !important;
+                            line-height: 1.4 !important;
+                            margin-bottom: 0.5rem !important;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                        }
+                        /* Footer */
+                        .menu-grid > div > div:last-child > div:last-child {
+                            padding-top: 0.5rem !important;
+                        }
+                        /* Price */
+                        .menu-grid > div > div:last-child > div:last-child span.text-primary {
+                            font-size: 0.75rem !important;
+                        }
+                        /* Button */
+                        .menu-grid > div > div:last-child > div:last-child a {
+                            padding: 0.35rem 0.5rem !important;
+                            font-size: 8px !important;
+                            border-radius: 2px !important;
+                        }
+                    }
+
+                    /* ── Desktop overrides ───────────────────── */
+                    @media (min-width: 640px) {
+                        .dining-hero { min-height: 82vh !important; }
+                        .dining-hero-content { padding-top: 14rem; padding-bottom: 4rem; }
+                        .dining-hero-title { font-size: 3.75rem !important; max-width: 36rem; }
+                        .dining-hero-desc { font-size: 1.125rem !important; max-width: 38rem; margin-bottom: 2.5rem !important; }
+                        .dining-btn-reserve, .dining-btn-menu { padding: 1rem 2rem !important; font-size: 13px !important; flex: 0 0 auto !important; }
+                        .dining-hero-tags { display: none; }
+                        .dining-stat-grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+                    }
+                `}</style>
             </section>
 
             {/* ══ 2. MENU TABS & IMAGE GRID ════════════════════════════ */}
@@ -300,7 +413,7 @@ export default function Dining() {
                                     </div>
 
                                     {/* Cards Grid */}
-                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                                    <div className="menu-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
                                         {section.items.map((item, idx) => {
                                             const cardId = `${section.key}-${idx}`
                                             const isHovered = hoveredCard === cardId
@@ -393,7 +506,7 @@ export default function Dining() {
                     {/* ── Tab 1: Bar & Cocktails with Real Drink Images ── */}
                     {activeTab === 1 && (
                         <div>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                            <div className="menu-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem' }}>
                                 {cocktails.map((drink, idx) => {
                                     const cardId = `drink-${idx}`
                                     const isHovered = hoveredCard === cardId
@@ -473,7 +586,7 @@ export default function Dining() {
                     {/* ── Tab 2: Wines & Champagne with Wine Images ── */}
                     {activeTab === 2 && (
                         <div>
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+                            <div className="menu-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
                                 {wines.map((wine, idx) => {
                                     const style = wineTypeStyle[wine.type]
                                     const cardId = `wine-${idx}`

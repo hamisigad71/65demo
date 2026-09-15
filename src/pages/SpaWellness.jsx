@@ -89,8 +89,46 @@ export default function SpaWellness() {
                                 Immerse yourself in sensory tranquility. Designed for discerning executives seeking deliberate decompression, physiological alignment, and holistic recalibration inside private soundproof suites.
                             </p>
 
+                            <style>{`
+                                @media (max-width: 639px) {
+                                    .spa-hero-ctas {
+                                        flex-wrap: nowrap !important;
+                                        gap: 0.5rem !important;
+                                    }
+                                    .spa-hero-ctas > button, .spa-hero-ctas > a {
+                                        flex: 1 !important;
+                                        padding: 0.8rem 0.4rem !important;
+                                        font-size: 9px !important;
+                                        justify-content: center !important;
+                                        text-align: center !important;
+                                    }
+                                    .spa-hero-ctas span.material-symbols-outlined {
+                                        font-size: 15px !important;
+                                    }
+                                    .spa-desktop-img {
+                                        display: none !important;
+                                    }
+                                }
+                                @media (min-width: 640px) {
+                                    .spa-mobile-img {
+                                        display: none !important;
+                                    }
+                                }
+                            `}</style>
+
+                            {/* Mobile-only hero image */}
+                            <div className="spa-mobile-img" style={{ position: 'relative', width: '100%', height: '15rem', borderRadius: '4px', overflow: 'hidden', marginBottom: '0.5rem', border: '1px solid rgba(236,194,70,0.2)' }}>
+                                <div className="img-cover" style={{ backgroundImage: `url('${SPA_HERO}')`, height: '100%' }}></div>
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,20,0.95) 0%, transparent 60%)' }}></div>
+                                {/* Floating status badge inside mobile image */}
+                                <div style={{ position: 'absolute', bottom: '1rem', left: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(20,20,20,0.75)', backdropFilter: 'blur(8px)', padding: '0.4rem 0.875rem', borderRadius: '4px', border: '1px solid rgba(236,194,70,0.2)' }}>
+                                    <span className="material-symbols-outlined text-primary" style={{ fontSize: '14px' }}>spa</span>
+                                    <span className="label-md text-primary" style={{ fontSize: '0.65rem', letterSpacing: '0.15em' }}>PRIVATE SOUNDPROOF SUITES</span>
+                                </div>
+                            </div>
+
                             {/* CTAs */}
-                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
+                            <div className="spa-hero-ctas" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
                                 <button onClick={() => setBookingOpen(true)} className="btn-primary" style={{ gap: '0.75rem', padding: '0.875rem 2rem' }}>
                                     Reserve Suite Session
                                     <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
@@ -118,7 +156,7 @@ export default function SpaWellness() {
                         </div>
 
                         {/* Right Column Image Showcase */}
-                        <div style={{ position: 'relative' }}>
+                        <div className="spa-desktop-img" style={{ position: 'relative' }}>
                             <div className="hero-barber-card" style={{ borderRadius: '16px', overflow: 'hidden', position: 'relative', border: '1px solid var(--gold-border)' }}>
                                 <div className="img-cover" style={{ backgroundImage: `url('${SPA_HERO}')`, height: '32rem', transition: 'transform 0.7s ease' }}
                                     onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
@@ -274,9 +312,23 @@ export default function SpaWellness() {
             </section>
 
             {/* ── BOOKING CTA ────────────────────────────────────────── */}
-            <section className="section" style={{ background: 'var(--surface-container-lowest)', padding: '7rem 0' }}>
+            <section className="section spa-booking-section" style={{ background: 'var(--surface-container-lowest)', padding: '7rem 0' }}>
+                <style>{`
+                    @media (max-width: 639px) {
+                        .spa-booking-section { padding: 4rem 0 !important; }
+                        .spa-booking-card { padding: 2.5rem 1.25rem !important; }
+                        .spa-booking-badge { font-size: 9px !important; }
+                        .spa-booking-title { font-size: 2rem !important; margin-bottom: 0.75rem !important; }
+                        .spa-booking-desc { font-size: 1rem !important; margin-bottom: 1.5rem !important; }
+                        .spa-booking-btn-group { flex-wrap: nowrap !important; gap: 0.5rem !important; }
+                        .spa-booking-btn { flex: 1 !important; padding: 0.75rem 0.25rem !important; font-size: 8.5px !important; text-align: center !important; justify-content: center !important; white-space: nowrap !important; line-height: 1.2 !important; }
+                        .spa-booking-btn span.material-symbols-outlined { font-size: 14px !important; }
+                        .spa-booking-footer { flex-direction: column !important; gap: 0.25rem !important; font-size: 0.75rem !important; }
+                        .hide-on-mobile { display: none !important; }
+                    }
+                `}</style>
                 <div className="container">
-                    <div style={{ position: 'relative', borderRadius: '4px', background: 'linear-gradient(135deg, var(--surface-dark) 0%, var(--surface-container) 100%)', padding: '4rem', boxShadow: '0 32px 80px rgba(0,0,0,0.5)', overflow: 'hidden', textAlign: 'center' }}>
+                    <div className="spa-booking-card" style={{ position: 'relative', borderRadius: '4px', background: 'linear-gradient(135deg, var(--surface-dark) 0%, var(--surface-container) 100%)', padding: '4rem', boxShadow: '0 32px 80px rgba(0,0,0,0.5)', overflow: 'hidden', textAlign: 'center' }}>
                         {/* Gold glow orb */}
                         <div style={{ position: 'absolute', top: '-5rem', right: '-5rem', width: '20rem', height: '20rem', borderRadius: '50%', background: 'rgba(236,194,70,0.06)', filter: 'blur(48px)', pointerEvents: 'none' }}></div>
                         <div style={{ position: 'absolute', bottom: '-5rem', left: '-5rem', width: '18rem', height: '18rem', borderRadius: '50%', background: 'rgba(236,194,70,0.04)', filter: 'blur(48px)', pointerEvents: 'none' }}></div>
@@ -284,28 +336,30 @@ export default function SpaWellness() {
                         <div style={{ position: 'relative', zIndex: 1, maxWidth: '36rem', margin: '0 auto' }}>
                             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.25rem 0.75rem', background: 'rgba(236,194,70,0.1)', borderRadius: '2px', marginBottom: '1.5rem' }}>
                                 <span className="material-symbols-outlined text-primary" style={{ fontSize: '16px', fontVariationSettings: "'FILL' 1" }}>stars</span>
-                                <span className="label-md text-primary" style={{ letterSpacing: '0.2em' }}>UNCOMPROMISING STILLNESS</span>
+                                <span className="label-md text-primary spa-booking-badge" style={{ letterSpacing: '0.2em' }}>UNCOMPROMISING STILLNESS</span>
                             </div>
-                            <h2 className="headline-lg text-light-primary" style={{ marginBottom: '1rem' }}>Ready for Your Restoration?</h2>
-                            <p className="body-lg text-on-surface-variant" style={{ lineHeight: 1.7, marginBottom: '2.5rem' }}>
+                            <h2 className="headline-lg text-light-primary spa-booking-title" style={{ marginBottom: '1rem', lineHeight: 1.2 }}>Ready for Your Restoration?</h2>
+                            <p className="body-lg text-on-surface-variant spa-booking-desc" style={{ lineHeight: 1.7, marginBottom: '2.5rem' }}>
                                 Our therapists maintain strictly limited daily engagements to safeguard attentive care and suite exclusivity.
                             </p>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
-                                <button onClick={() => setBookingOpen(true)} className="btn-primary" style={{ padding: '1rem 2.5rem', boxShadow: '0 0 32px rgba(201,162,39,0.2)' }}>
+                            <div className="spa-booking-btn-group" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+                                <button onClick={() => setBookingOpen(true)} className="btn-primary spa-booking-btn" style={{ padding: '1rem 2.5rem', boxShadow: '0 0 32px rgba(201,162,39,0.2)' }}>
                                     Book a Spa Experience
                                 </button>
-                                <a href="https://wa.me/254719506995" target="_blank" rel="noopener"
-                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '1rem 2rem', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '2px', color: 'var(--text-light-primary)', textDecoration: 'none', transition: 'border-color 0.3s' }}
-                                    className="label-md"
+                                <a href="https://wa.me/254719506995" target="_blank" rel="noopener noreferrer"
+                                    style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', padding: '1rem 2rem', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '2px', color: 'var(--text-light-primary)', textDecoration: 'none', transition: 'border-color 0.3s' }}
+                                    className="label-md spa-booking-btn"
                                     onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--primary)'}
                                     onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'}>
                                     <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px' }}>chat</span>
                                     WhatsApp Consultation
                                 </a>
                             </div>
-                            <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }} className="body-sm text-on-surface-variant">
+                            <div className="body-sm text-on-surface-variant spa-booking-footer" style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
                                 <span className="material-symbols-outlined text-primary" style={{ fontSize: '14px' }}>schedule</span>
-                                Open daily: 7:00 AM – 11:00 PM • 275 Nyeri Close, Kileleshwa
+                                <span>Open daily: 7:00 AM – 11:00 PM</span>
+                                <span style={{ opacity: 0.5 }} className="hide-on-mobile">•</span>
+                                <span>275 Nyeri Close, Kileleshwa</span>
                             </div>
                         </div>
                     </div>
