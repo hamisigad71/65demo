@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import FloatingBottomNav from './components/FloatingBottomNav'
@@ -7,10 +8,22 @@ import BarberStudio from './pages/BarberStudio'
 import SpaWellness from './pages/SpaWellness'
 import ServicesMenu from './pages/ServicesMenu'
 import Dining from './pages/Dining'
+import Loader from './components/Loader'
 
 export default function App() {
+  const [isAppReady, setIsAppReady] = useState(false)
+
+  useEffect(() => {
+    // Simulate initial application mounting & asset loading
+    const timer = setTimeout(() => {
+      setIsAppReady(true)
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <BrowserRouter>
+      <Loader ready={isAppReady} />
       <Navbar />
       <main style={{ paddingTop: '5rem', backgroundColor: 'var(--surface-dark)', minHeight: '100vh' }}>
         <Routes>

@@ -645,7 +645,7 @@ export default function Home() {
                                     <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>chat</span>
                                     WHATSAPP CONCIERGE
                                 </a>
-                                <a href="tel:+254719506995"
+                                <a href="tel:+254742630973"
                                     style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.75rem 1.5rem', borderRadius: '2px', background: 'var(--surface-container)', color: 'var(--text-light-primary)', textDecoration: 'none', transition: 'background 0.2s' }}
                                     className="label-md">
                                     <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>call</span>

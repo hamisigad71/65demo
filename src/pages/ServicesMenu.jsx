@@ -114,7 +114,7 @@ export default function ServicesMenu() {
                         <div style={{ maxWidth: '40rem' }}>
                             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 1rem', borderRadius: '9999px', background: 'var(--surface-container)', marginBottom: '1.5rem' }}>
                                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }} className="pulse-dot" />
-                                <span className="label-md text-primary" style={{ letterSpacing: '0.22em' }}>ATELIER MENU & RITUALS</span>
+                                <span className="label-md text-primary" style={{ letterSpacing: '0.22em' }}>ATELIER MENU &amp; RITUALS</span>
                             </div>
                             <h1 className="headline-lg text-light-primary" style={{ marginBottom: '1rem' }}>
                                 Curated Grooming, Wellness<br />
@@ -125,15 +125,45 @@ export default function ServicesMenu() {
                             </p>
                         </div>
 
-                        <div style={{ display: 'flex', gap: '2rem', background: 'var(--surface-container)', padding: '1.5rem 2rem', borderRadius: '4px', border: '1px solid var(--gold-border)', flexShrink: 0 }}>
+                        {/* Mobile-only hero image */}
+                        <div className="services-hero-img" style={{
+                            width: '100%', height: '16rem', borderRadius: '6px', overflow: 'hidden',
+                            position: 'relative', flexShrink: 0
+                        }}>
+                            <div className="img-cover" style={{ backgroundImage: `url('https://i.pinimg.com/1200x/7e/83/82/7e83827383bceb779ab34912340154b2.jpg')` }} />
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 60%)' }} />
+                            <div style={{
+                                position: 'absolute', bottom: '1rem', left: '1rem',
+                                display: 'flex', alignItems: 'center', gap: '0.5rem',
+                                background: 'rgba(10,10,10,0.65)', backdropFilter: 'blur(8px)',
+                                padding: '0.4rem 0.875rem', borderRadius: '4px'
+                            }}>
+                                <span className="material-symbols-outlined text-primary" style={{ fontSize: '15px', fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+                                <span className="label-md text-primary" style={{ fontSize: '0.65rem', letterSpacing: '0.18em' }}>EXECUTIVE ATELIER · KILELESHWA</span>
+                            </div>
+                        </div>
+
+                        <style>{`
+                          .services-hero-img { display: block; }
+                          .status-card { display: flex; flex-direction: row; gap: 0.875rem; padding: 1rem 1.25rem; background: var(--surface-container); border-radius: 4px; border: 1px solid var(--gold-border); flex-shrink: 0; align-items: center; }
+                          .status-divider { width: 1px; height: 2.5rem; background: var(--outline-variant); flex-shrink: 0; }
+                          .status-title { font-size: 0.8rem; }
+                          @media(min-width: 640px) {
+                            .services-hero-img { display: none; }
+                            .status-card { gap: 2rem; padding: 1.5rem 2rem; }
+                            .status-divider { height: auto; align-self: stretch; }
+                            .status-title { font-size: 1rem; }
+                          }
+                        `}</style>
+                        <div className="status-card">
                             <div>
                                 <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.15em', display: 'block', marginBottom: '0.25rem' }}>PRIVATE SUITES</span>
-                                <span className="title-md text-primary">Discreet & Soundproof</span>
+                                <span className="title-md text-primary status-title">Discreet &amp; Soundproof</span>
                             </div>
-                            <div style={{ width: '1px', background: 'var(--outline-variant)' }} />
+                            <div className="status-divider" />
                             <div>
                                 <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.15em', display: 'block', marginBottom: '0.25rem' }}>AVAILABILITY</span>
-                                <span className="title-md text-light-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <span className="title-md text-light-primary status-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                     <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px', fontVariationSettings: "'FILL' 1" }}>check_circle</span>
                                     Open Today
                                 </span>
@@ -298,7 +328,7 @@ export default function ServicesMenu() {
                                 </p>
                             </div>
                             <a
-                                href="tel:+254719506995"
+                                href="tel:+254742630973"
                                 style={{
                                     display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
                                     color: 'var(--primary)', textDecoration: 'none',
@@ -323,21 +353,38 @@ export default function ServicesMenu() {
                         <div className="img-cover" style={{ backgroundImage: `url('${SANCTUARY_IMG}')`, position: 'absolute', inset: 0, opacity: 0.35 }} />
                         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(12,12,12,0.97) 0%, rgba(12,12,12,0.85) 50%, rgba(12,12,12,0.4) 100%)' }} />
 
-                        <div style={{ position: 'relative', zIndex: 1, padding: '4rem 3.5rem', maxWidth: '44rem' }}>
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 1rem', borderRadius: '9999px', background: 'rgba(236,194,70,0.12)', border: '1px solid rgba(236,194,70,0.25)', marginBottom: '1.5rem' }}>
+                        <style>{`
+                          .sanctuary-body { position: relative; zIndex: 1; padding: 2rem 1.5rem; max-width: 44rem; }
+                          .sanctuary-title { font-size: 1.6rem !important; margin-bottom: 0.625rem !important; }
+                          .sanctuary-desc { font-size: 0.9rem !important; line-height: 1.65 !important; margin-bottom: 1.5rem !important; }
+                          .sanctuary-includes { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-bottom: 1.5rem; }
+                          .sanctuary-includes-item { padding: 0.625rem 0.875rem; }
+                          .sanctuary-price { font-size: 1.5rem !important; }
+                          @media(min-width: 640px) {
+                            .sanctuary-body { padding: 4rem 3.5rem; }
+                            .sanctuary-title { font-size: 2.25rem !important; margin-bottom: 1rem !important; }
+                            .sanctuary-desc { font-size: 1.125rem !important; margin-bottom: 2.5rem !important; }
+                            .sanctuary-includes { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-bottom: 2.5rem; }
+                            .sanctuary-includes-item { padding: 0.875rem 1rem; }
+                            .sanctuary-price { font-size: 1.75rem !important; }
+                          }
+                        `}</style>
+
+                        <div className="sanctuary-body" style={{ position: 'relative', zIndex: 1 }}>
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 1rem', borderRadius: '9999px', background: 'rgba(236,194,70,0.12)', border: '1px solid rgba(236,194,70,0.25)', marginBottom: '1.25rem' }}>
                                 <span className="material-symbols-outlined text-primary" style={{ fontSize: '16px' }}>stars</span>
                                 <span className="label-md text-primary" style={{ letterSpacing: '0.2em' }}>VIP SIGNATURE EXPERIENCE</span>
                             </div>
 
-                            <h2 className="headline-lg text-light-primary" style={{ marginBottom: '1rem' }}>
+                            <h2 className="sanctuary-title headline-lg text-light-primary">
                                 The Executive Sanctuary Day
                             </h2>
-                            <p className="body-lg text-on-surface-variant" style={{ lineHeight: 1.75, marginBottom: '2.5rem' }}>
+                            <p className="sanctuary-desc body-lg text-on-surface-variant">
                                 The pinnacle of grooming indulgence. Enjoy our signature haircut, classic royal hot towel shave, 60-minute deep tissue therapy, executive facial, and a curated three-course dining experience with paired single-malt refreshments.
                             </p>
 
                             {/* Includes grid */}
-                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.75rem', marginBottom: '2.5rem' }}>
+                            <div className="sanctuary-includes">
                                 {[
                                     { label: 'Haircut', sub: 'Full Styling' },
                                     { label: 'Shave', sub: 'Hot Towel' },
@@ -345,17 +392,17 @@ export default function ServicesMenu() {
                                     { label: 'Facial', sub: 'Dermal Detox' },
                                     { label: 'Dining', sub: '3-Course Meal' },
                                 ].map(item => (
-                                    <div key={item.label} style={{ background: 'rgba(12,12,12,0.7)', backdropFilter: 'blur(8px)', padding: '0.875rem 1rem', borderRadius: '4px', border: '1px solid var(--outline-variant)' }}>
-                                        <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.12em', display: 'block', marginBottom: '0.25rem' }}>{item.label.toUpperCase()}</span>
+                                    <div key={item.label} className="sanctuary-includes-item" style={{ background: 'rgba(12,12,12,0.7)', backdropFilter: 'blur(8px)', borderRadius: '4px', border: '1px solid var(--outline-variant)' }}>
+                                        <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.12em', display: 'block', marginBottom: '0.2rem', fontSize: '0.65rem' }}>{item.label.toUpperCase()}</span>
                                         <span className="body-sm text-light-primary" style={{ fontWeight: 600 }}>{item.sub}</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
                                 <div>
                                     <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.15em', display: 'block', marginBottom: '0.25rem' }}>ALL-INCLUSIVE PACKAGE</span>
-                                    <span className="headline-sm text-primary" style={{ fontWeight: 700 }}>KES 18,500</span>
+                                    <span className="sanctuary-price headline-sm text-primary" style={{ fontWeight: 700 }}>KES 18,500</span>
                                 </div>
                                 <a
                                     href="https://wa.me/254719506995"

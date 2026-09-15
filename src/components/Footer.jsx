@@ -68,7 +68,7 @@ export default function Footer() {
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                                 <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px' }}>call</span>
-                                <a href="tel:+254719506995" className="nav-link">+254 719 506 995</a>
+                                <a href="tel:+254742630973" className="nav-link">+254 719 506 995</a>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                                 <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px' }}>mail</span>
