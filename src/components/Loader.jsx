@@ -35,7 +35,7 @@ export default function Loader({ ready }) {
 
                 {/* Thin loading bar */}
                 <div style={{ width: '12rem', height: '2px', backgroundColor: 'rgba(236,194,70,0.15)', borderRadius: '2px', overflow: 'hidden' }}>
-                    <div className="loader-progress-bar" style={{ height: '100%', backgroundColor: 'var(--primary)', width: '0%', borderRadius: '2px' }}></div>
+                    <div className="loader-progress-bar" style={{ height: '100%', backgroundColor: 'var(--primary)', width: '40%', borderRadius: '2px' }}></div>
                 </div>
             </div>
 
@@ -44,15 +44,16 @@ export default function Loader({ ready }) {
                     animation: subtle-pulse 3s infinite ease-in-out;
                 }
                 .loader-progress-bar {
-                    animation: loader-fill 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+                    animation: loader-shimmer 1.8s ease-in-out infinite;
                 }
                 @keyframes subtle-pulse {
                     0%, 100% { opacity: 0.9; transform: scale(1); }
                     50% { opacity: 1; transform: scale(1.02); }
                 }
-                @keyframes loader-fill {
-                    0% { width: 0%; opacity: 0.5; }
-                    100% { width: 100%; opacity: 1; }
+                @keyframes loader-shimmer {
+                    0%   { transform: translateX(-100%); opacity: 0.6; }
+                    50%  { opacity: 1; }
+                    100% { transform: translateX(200%); opacity: 0.6; }
                 }
             `}</style>
         </div>

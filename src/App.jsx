@@ -14,11 +14,22 @@ export default function App() {
   const [isAppReady, setIsAppReady] = useState(false)
 
   useEffect(() => {
-    // Simulate initial application mounting & asset loading
-    const timer = setTimeout(() => {
+    const MIN_DISPLAY = 1800 // ms — minimum time the loader is visible
+
+    const minTimer = new Promise(resolve => setTimeout(resolve, MIN_DISPLAY))
+
+    const windowLoad = new Promise(resolve => {
+      if (document.readyState === 'complete') {
+        resolve()
+      } else {
+        window.addEventListener('load', resolve, { once: true })
+      }
+    })
+
+    // Dismiss loader only after BOTH the page is fully loaded AND the minimum time has elapsed
+    Promise.all([minTimer, windowLoad]).then(() => {
       setIsAppReady(true)
-    }, 1500)
-    return () => clearTimeout(timer)
+    })
   }, [])
 
   return (
