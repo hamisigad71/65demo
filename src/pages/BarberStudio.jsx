@@ -34,65 +34,71 @@ export default function BarberStudio() {
     return (
         <div>
             {/* ── HERO ─────────────────────────────────────────── */}
-            <section style={{ position: 'relative', overflow: 'hidden', padding: '6rem 0' }}>
-                {/* Glows */}
-                <div style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translateX(-50%)', width: '850px', height: '340px', background: 'radial-gradient(ellipse at center, rgba(236,194,70,0.15) 0%, transparent 70%)', pointerEvents: 'none', filter: 'blur(40px)' }}></div>
+            <section style={{ position: 'relative', overflow: 'hidden', padding: '5rem 0 6rem' }}>
                 <div className="container" style={{ position: 'relative', zIndex: 10 }}>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', padding: '0.375rem 1rem', borderRadius: '9999px', background: 'rgba(236,194,70,0.1)' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+
+                            {/* Top Atelier Badge */}
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 1.25rem', borderRadius: '9999px', background: 'var(--surface-container-high)', border: '1px solid var(--gold-border)', backdropFilter: 'blur(12px)', width: 'fit-content' }}>
                                 <span className="pulse-dot"></span>
-                                <span className="label-md text-primary" style={{ letterSpacing: '0.2em' }}>Private Gentlemen's Atelier • Kileleshwa</span>
+                                <span className="label-md text-primary" style={{ letterSpacing: '0.22em' }}>PRIVATE GENTLEMEN'S ATELIER • KILELESHWA</span>
                             </div>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                <span className="label-lg text-on-surface-variant" style={{ letterSpacing: '0.25em' }}>THE ART OF BESPOKE GROOMING</span>
-                                <h1 className="display-lg text-light-primary" style={{ lineHeight: 1.1 }}>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+                                <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.25em', opacity: 0.8 }}>THE ART OF BESPOKE GROOMING</span>
+                                <h1 className="display-lg text-light-primary" style={{ lineHeight: 1.08, margin: 0 }}>
                                     Precision. Style. <br />
                                     <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400 }}>Confidence.</em>
                                 </h1>
                             </div>
-                            <p className="body-lg text-on-surface-variant" style={{ maxWidth: '36rem', lineHeight: 1.7 }}>
+
+                            <p className="body-lg text-on-surface-variant" style={{ maxWidth: '36rem', lineHeight: 1.75, opacity: 0.9 }}>
                                 Master barbering tailored to the modern gentleman. Experience unmatched attention to detail, sacred hot towel rituals, and discreet hospitality inside our secluded Nairobi salon sanctuary.
                             </p>
 
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', alignItems: 'center', margin: '1rem 0' }}>
+                            {/* Feature pills */}
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
                                 {[
                                     { i: 'workspace_premium', l: 'Master Artisans' },
                                     { i: 'lock', l: 'Acoustic Privacy' },
                                     { i: 'local_bar', l: 'Single Malt Pour' }
                                 ].map((tag, idx) => (
-                                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '20px' }}>{tag.i}</span>
-                                        <span className="label-md text-on-surface" style={{ letterSpacing: '0.15em' }}>{tag.l.toUpperCase()}</span>
+                                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', padding: '0.5rem 1rem', borderRadius: '6px', background: 'var(--surface-container)', border: '1px solid var(--outline-variant)' }}>
+                                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px' }}>{tag.i}</span>
+                                        <span className="label-md text-light-primary" style={{ letterSpacing: '0.12em', fontSize: '0.72rem' }}>{tag.l.toUpperCase()}</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                                <a href="#signature" className="btn-primary" style={{ gap: '0.75rem' }}>
+                            {/* Actions */}
+                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
+                                <a href="#signature" className="btn-primary" style={{ gap: '0.75rem', padding: '0.875rem 2rem' }}>
                                     Explore Signature Ritual
                                     <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
                                 </a>
-                                <a href="#menu" className="btn-ghost">Discipline Menu</a>
+                                <a href="#menu" className="btn-ghost" style={{ padding: '0.875rem 2rem' }}>Discipline Menu</a>
                             </div>
                         </div>
 
+                        {/* Right side Image Showcase */}
                         <div style={{ position: 'relative' }}>
-                            <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 24px 64px rgba(0,0,0,0.5)', position: 'relative' }}>
-                                <div className="img-cover" style={{ backgroundImage: `url('${HERO_IMG}')`, height: '28rem', transition: 'transform 0.7s ease' }}
-                                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                            <div className="hero-barber-card" style={{ borderRadius: '16px', overflow: 'hidden', position: 'relative', border: '1px solid var(--gold-border)' }}>
+                                <div className="img-cover" style={{ backgroundImage: `url('${HERO_IMG}')`, height: '30rem', transition: 'transform 0.7s ease' }}
+                                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
                                     onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}></div>
-                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--surface-dark), transparent, rgba(0,0,0,0.3))' }}></div>
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,15,15,0.75) 0%, transparent 60%)' }}></div>
 
-                                <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem', padding: '1rem', borderRadius: '12px', background: 'color-mix(in srgb, var(--surface-dark) 90%, transparent)', backdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 8px 32px rgba(0,0,0,0.4)' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                {/* Floating station status badge */}
+                                <div className="hero-station-badge" style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem', padding: '1.125rem 1.5rem', borderRadius: '12px', background: 'rgba(20,20,20,0.85)', backdropFilter: 'blur(16px)', border: '1px solid rgba(236,194,70,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
                                         <span className="pulse-dot"></span>
                                         <div>
-                                            <div className="label-md text-light-primary" style={{ letterSpacing: '0.15em' }}>ATELIER STATION 01 &amp; 03</div>
-                                            <div className="body-sm text-on-surface-variant">Master Artisans On Duty Today</div>
+                                            <div className="label-md" style={{ letterSpacing: '0.15em', color: '#ffffff' }}>ATELIER STATION 01 &amp; 03</div>
+                                            <div className="body-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>Master Artisans On Duty Today</div>
                                         </div>
                                     </div>
-                                    <span className="material-symbols-outlined text-primary">content_cut</span>
+                                    <span className="material-symbols-outlined text-primary" style={{ fontSize: '24px' }}>content_cut</span>
                                 </div>
                             </div>
                         </div>

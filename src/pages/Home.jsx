@@ -11,7 +11,8 @@ const MAP_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDnemhVGcq-f
 const experienceCards = [
     { suite: 'Suite 01', title: 'THE BARBER', desc: 'Precision cuts, bespoke beard architecture, and traditional hot towel lather shaves delivered by master barbers.', cta: 'Explore Atelier', img: BARBER_IMG, link: '/barber' },
     { suite: 'Suite 02', title: 'THE SPA', desc: 'Holistic body therapies, deep tissue recovery, and clinical-grade skin treatments to dissolve metropolitan fatigue.', cta: 'View Spa Menu', img: SPA_IMG, link: '/spa' },
-    { suite: 'Private Club', title: 'THE EXPERIENCE', desc: 'Discreet private booths, bespoke soundscapes, curated refreshments, and an atmosphere tailored for total unwinding.', cta: 'The Lounge Ritual', img: LOUNGE_IMG, link: '/services' },
+    { suite: 'Suite 03', title: 'DINING & LOUNGE', desc: 'Continental fine dining, handcrafted signature cocktails, rare wines, and in-suite service delivered to your private booth.', cta: 'View Dining Menu', img: LOUNGE_IMG, link: '/dining' },
+    { suite: 'Suite 04', title: 'VIP PRIVILEGE', desc: 'Exclusive access to our VIP inner circle with guaranteed preferred booking windows and quarterly regiments.', cta: 'Explore VIP', img: EDITORIAL_IMG, link: '/vip' },
 ]
 
 const barberServices = [
@@ -62,7 +63,7 @@ export default function Home() {
     return (
         <div>
             {/* ── 1. HERO ─────────────────────────────────────────── */}
-            <section style={{ position: 'relative', minHeight: '92vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginTop: '-5rem', overflow: 'hidden' }}>
+            <section className="hero-dark-theme" style={{ position: 'relative', minHeight: '92vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginTop: '-5rem', overflow: 'hidden' }}>
                 {/* Backdrop */}
                 <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
                     <div className="img-cover hero-bg" style={{ backgroundImage: `url('${HERO_BG}')`, transition: 'transform 1s ease-out' }}></div>
@@ -74,48 +75,48 @@ export default function Home() {
                 <div className="container" style={{ position: 'relative', zIndex: 10, paddingTop: '9rem', paddingBottom: '4rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <div style={{ maxWidth: '44rem' }}>
                         {/* Badge */}
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.375rem 1rem', borderRadius: '9999px', background: 'color-mix(in srgb, var(--surface-container) 80%, transparent)', backdropFilter: 'blur(12px)', marginBottom: '1.5rem' }}>
+                        <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.375rem 1rem', borderRadius: '9999px', background: 'color-mix(in srgb, var(--surface-container) 80%, transparent)', backdropFilter: 'blur(12px)' }}>
                             <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px', fontVariationSettings: "'FILL' 1" }}>location_on</span>
                             <span className="label-md text-secondary" style={{ letterSpacing: '0.2em' }}>KILELESHWA • NAIROBI, KENYA</span>
                         </div>
 
                         {/* Headline */}
-                        <h1 className="display-lg text-light-primary" style={{ marginBottom: '1.5rem' }}>
+                        <h1 className="hero-title display-lg text-light-primary">
                             Where Executive Grooming{' '}
                             <br className="hidden-sm" />
                             <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400 }}>Meets Total Wellness</em>
                         </h1>
 
-                        <p className="body-lg text-on-surface-variant" style={{ maxWidth: '40rem', lineHeight: 1.7, marginBottom: '2rem' }}>
-                            Premium barbering, bespoke spa rituals, and wellness experiences architected exclusively for the discerning modern gentleman. An intimate retreat away from the capital's bustle.
+                        <p className="hero-desc body-lg text-on-surface-variant" style={{ maxWidth: '40rem', lineHeight: 1.7 }}>
+                            Premium barbering, bespoke spa rituals, continental fine dining, curated cocktails, and total-immersion wellness — architected exclusively for the discerning modern gentleman.
                         </p>
 
-                        <div style={{ display: 'flex', gap: '0.875rem', marginBottom: '1rem' }}>
+                        <div className="hero-btns">
                             <Link to="/services" className="btn-primary" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Book An Appointment</Link>
                             <a href="#services" className="btn-ghost" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Explore Services</a>
                         </div>
 
                         {/* Live */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="body-sm text-on-surface-variant">
-                            <span className="pulse-dot"></span>
+                        <div className="hero-live body-sm text-on-surface-variant" style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                            <span className="pulse-dot" style={{ marginTop: '0.25rem' }}></span>
                             <span>Private Suites Open Today • Valet Concierge on Nyeri Close</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Stats strip */}
-                <div style={{ position: 'relative', zIndex: 10, background: 'color-mix(in srgb, var(--surface-container-lowest) 90%, transparent)', backdropFilter: 'blur(20px)' }}>
+                <div style={{ position: 'relative', zIndex: 10, background: 'rgba(15, 15, 15, 0.95)', backdropFilter: 'blur(20px)' }}>
                     <div className="container" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
-                            {[['500+', 'Happy Clients'], ['50+', 'Premium Services'], ['15+', 'Expert Professionals'], ['98%', 'Client Satisfaction']].map(([v, l]) => (
+                        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+                            {[['500+', 'Happy Clients'], ['60+', 'Menu Items & Services'], ['15+', 'Expert Professionals'], ['98%', 'Client Satisfaction']].map(([v, l]) => (
                                 <div key={l} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                                     <span className="headline-lg text-primary" style={{ fontWeight: 600 }}>{v}</span>
-                                    <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.18em' }}>{l.toUpperCase()}</span>
+                                    <span className="label-md text-light-primary" style={{ letterSpacing: '0.1em', opacity: 0.9 }}>{l.toUpperCase()}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <style>{`@media(min-width:640px){div.stats-grid{grid-template-columns:repeat(4,1fr)!important}}`}</style>
+                    <style>{`@media(min-width:640px){ .stats-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 2rem !important; } }`}</style>
                 </div>
             </section>
 
@@ -130,25 +131,25 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                    <div className="experience-grid" style={{ display: 'grid' }}>
                         {experienceCards.map(c => (
                             <div key={c.title} className="service-card" style={{ cursor: 'default' }}>
-                                <div style={{ height: '20rem', position: 'relative', overflow: 'hidden' }}>
+                                <div className="exp-img-box" style={{ position: 'relative', overflow: 'hidden' }}>
                                     <div className="img-cover" style={{ backgroundImage: `url('${c.img}')`, transition: 'transform 0.7s ease-out' }}
                                         onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
                                         onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                                     ></div>
-                                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--surface-container), color-mix(in srgb, var(--surface-container) 30%, transparent), transparent)' }}></div>
-                                    <span style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'color-mix(in srgb, var(--surface-container-lowest) 80%, transparent)', backdropFilter: 'blur(8px)', padding: '0.25rem 0.75rem', borderRadius: '2px' }}
-                                        className="label-md text-primary">{c.suite}</span>
+                                    <div className="card-img-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--surface-container), color-mix(in srgb, var(--surface-container) 30%, transparent), transparent)' }}></div>
+                                    <span style={{ position: 'absolute', top: '0.5rem', right: '0.5rem', background: 'color-mix(in srgb, var(--surface-container-lowest) 80%, transparent)', backdropFilter: 'blur(8px)', padding: '0.2rem 0.5rem', borderRadius: '2px' }}
+                                        className="suite-badge label-md text-primary">{c.suite}</span>
                                 </div>
-                                <div style={{ padding: '2rem' }}>
-                                    <h3 className="headline-sm text-light-primary" style={{ marginBottom: '0.75rem' }}>{c.title}</h3>
-                                    <p className="body-md text-on-surface-variant" style={{ lineHeight: 1.7, marginBottom: '1rem' }}>{c.desc}</p>
-                                    <Link to={c.link} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', transition: 'transform 0.3s', textDecoration: 'none' }}
-                                        className="label-md">
+                                <div className="exp-card-body">
+                                    <h3 className="exp-card-title headline-sm text-light-primary" style={{ marginBottom: '0.5rem' }}>{c.title}</h3>
+                                    <p className="exp-card-desc body-md text-on-surface-variant" style={{ lineHeight: 1.5, marginBottom: '0.75rem' }}>{c.desc}</p>
+                                    <Link to={c.link} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', color: 'var(--primary)', transition: 'transform 0.3s', textDecoration: 'none' }}
+                                        className="exp-card-cta label-md">
                                         <span>{c.cta}</span>
-                                        <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
+                                        <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>arrow_forward</span>
                                     </Link>
                                 </div>
                             </div>
@@ -332,10 +333,37 @@ export default function Home() {
                 </div>
                 <style>{`
                   .hero-bg { transform: scale(1); }
-                  .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.1) 100%); }
+                  .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.2) 100%); }
+                  .hero-badge { margin-bottom: 2rem !important; }
+                  .hero-title { font-size: 2.75rem !important; line-height: 1.15; margin-bottom: 1.25rem !important; }
+                  .hero-desc { font-size: 1rem !important; margin-bottom: 2.5rem !important; opacity: 0.9; }
+                  .hero-btns { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem !important; }
+                  .hero-live { font-size: 0.85rem !important; opacity: 0.85; }
+                  
+                  .experience-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+                  .exp-img-box { height: 12rem; }
+                  .exp-card-body { padding: 1rem; }
+                  .suite-badge { font-size: 0.6rem; }
+                  .exp-card-title { font-size: 1.1rem; }
+                  .exp-card-desc { font-size: 0.85rem; }
+                  .exp-card-cta { font-size: 0.85rem; }
+                  
                   @media(min-width:640px){
+                    .hero-badge { margin-bottom: 1.5rem !important; }
+                    .hero-title { font-size: 4.5rem !important; margin-bottom: 1.5rem !important; }
+                    .hero-desc { font-size: 1.25rem !important; margin-bottom: 2rem !important; }
+                    .hero-btns { flex-direction: row; gap: 1rem; margin-bottom: 1rem !important; }
+                    .hero-live { font-size: 1rem !important; }
+                    
                     #discreet-card{display:block!important}
                     .features-grid{grid-template-columns:repeat(4,1fr)!important;gap:2rem!important}
+                    .experience-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+                    .exp-img-box { height: 20rem; }
+                    .exp-card-body { padding: 2rem; }
+                    .suite-badge { font-size: 0.75rem; top: 1rem !important; right: 1rem !important; padding: 0.25rem 0.75rem !important; }
+                    .exp-card-title { font-size: 1.5rem; margin-bottom: 0.75rem !important; }
+                    .exp-card-desc { font-size: 1rem; margin-bottom: 1rem !important; line-height: 1.7 !important; }
+                    .exp-card-cta { font-size: 0.875rem; }
                     .hero-bg { transform: scale(1.05); }
                     .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.25) 100%); }
                   }
@@ -454,6 +482,18 @@ export default function Home() {
 
             {/* ── 7. MEMBERSHIP CTA ───────────────────────────────── */}
             <section className="section bg-surface-container-lowest" style={{ padding: '5rem 0' }}>
+                <style>{`
+                  .vip-card-inner { padding: 2.5rem 1.5rem; }
+                  .vip-title { font-size: 2.25rem; line-height: 1.25; margin-bottom: 0.5rem; }
+                  .vip-desc { font-size: 0.95rem; line-height: 1.6; }
+                  .vip-btn { width: 100%; justify-content: center; display: flex; }
+                  @media(min-width:640px) {
+                    .vip-card-inner { padding: 4rem; }
+                    .vip-title { font-size: 3rem; margin-bottom: 1rem; }
+                    .vip-desc { font-size: 1.125rem; }
+                    .vip-btn { width: auto; display: inline-flex; }
+                  }
+                `}</style>
                 <div className="container">
                     <div style={{
                         position: 'relative',
@@ -466,10 +506,10 @@ export default function Home() {
                         {/* Ambient glow background effect */}
                         <div style={{ position: 'absolute', right: '-4rem', top: '-4rem', width: '28rem', height: '28rem', borderRadius: '50%', background: 'radial-gradient(circle, rgba(236,194,70,0.12) 0%, transparent 70%)', pointerEvents: 'none', zIndex: 0 }} />
 
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'center', position: 'relative', zIndex: 1, padding: '3rem 2.5rem' }}>
+                        <div className="vip-card-inner" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem', alignItems: 'center', position: 'relative', zIndex: 1 }}>
 
                             {/* Left Side: Content */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                                 {/* Badge */}
                                 <div>
                                     <div style={{
@@ -488,42 +528,44 @@ export default function Home() {
                                 </div>
 
                                 {/* Headline */}
-                                <h2 className="headline-lg text-light-primary" style={{ margin: 0, lineHeight: 1.25 }}>
-                                    Make Executive Grooming<br />
-                                    <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400 }}>A Non-Negotiable Ritual</em>
-                                </h2>
+                                <div>
+                                    <h2 className="vip-title text-light-primary" style={{ margin: 0 }}>
+                                        Make Executive Grooming <br className="hidden-sm" />
+                                        <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400 }}>A Non-Negotiable Ritual</em>
+                                    </h2>
+                                </div>
 
-                                <p className="body-md text-on-surface-variant" style={{ lineHeight: 1.7, margin: 0 }}>
+                                <p className="vip-desc text-on-surface-variant" style={{ margin: 0 }}>
                                     Join the Executive Hideaway inner circle and unlock guaranteed preferred booking windows, complimentary guest passes, priority access to private booths, and tailored quarterly wellness regiments.
                                 </p>
 
                                 {/* Perks List */}
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.5rem' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '0.5rem' }}>
                                     {[
                                         'Guaranteed Priority Reservations & Zero Wait Time',
                                         'Private Booth Access & Premium Beverage Privileges',
                                         'Complimentary VIP Guest Passes & Quarterly Treatments'
                                     ].map(perk => (
-                                        <div key={perk} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                            <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px', fontVariationSettings: "'FILL' 1" }}>verified</span>
-                                            <span className="body-sm text-light-primary" style={{ fontWeight: 500 }}>{perk}</span>
+                                        <div key={perk} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.875rem' }}>
+                                            <span className="material-symbols-outlined text-primary" style={{ fontSize: '20px', fontVariationSettings: "'FILL' 1", marginTop: '0.125rem' }}>verified</span>
+                                            <span className="body-sm text-light-primary" style={{ fontWeight: 500, lineHeight: 1.5 }}>{perk}</span>
                                         </div>
                                     ))}
                                 </div>
 
                                 {/* Action Button */}
-                                <div style={{ paddingTop: '1rem' }}>
+                                <div style={{ paddingTop: '1.5rem' }}>
                                     <a
                                         href="https://wa.me/254719506995"
                                         target="_blank"
                                         rel="noopener"
-                                        className="btn-primary"
+                                        className="btn-primary vip-btn"
                                         style={{
                                             padding: '1.1rem 2.25rem',
                                             boxShadow: '0 0 24px rgba(201,162,39,0.3)',
-                                            display: 'inline-flex',
                                             alignItems: 'center',
-                                            gap: '0.75rem'
+                                            gap: '0.75rem',
+                                            textAlign: 'center'
                                         }}
                                     >
                                         <span>EXPLORE MEMBERSHIP</span>
@@ -558,8 +600,8 @@ export default function Home() {
 
                                     {/* Bottom Image Caption */}
                                     <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem' }}>
-                                        <div className="headline-sm text-light-primary" style={{ marginBottom: '0.25rem' }}>The Executive Lounge</div>
-                                        <div className="body-sm text-on-surface-variant">Private booths &amp; single malt refreshers reserved for members</div>
+                                        <div className="headline-sm" style={{ marginBottom: '0.25rem', color: '#ffffff' }}>The Executive Lounge</div>
+                                        <div className="body-sm" style={{ color: 'rgba(255, 255, 255, 0.85)' }}>Private booths &amp; single malt refreshers reserved for members</div>
                                     </div>
                                 </div>
                             </div>

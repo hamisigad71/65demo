@@ -63,49 +63,82 @@ export default function SpaWellness() {
         <div style={{ background: 'var(--surface-dark)', minHeight: '100vh' }}>
 
             {/* ── HERO ───────────────────────────────────────────────── */}
-            <section style={{ position: 'relative', minHeight: '95vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', marginTop: '-5rem', overflow: 'hidden' }}>
-                {/* Background */}
-                <div className="img-cover" style={{ backgroundImage: `url('${SPA_HERO}')`, transform: 'scale(1.05)', transition: 'transform 1.2s ease-out' }}></div>
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.2) 100%)' }}></div>
-                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 60%, rgba(201,162,39,0.08), transparent 65%)' }}></div>
+            {/* ── HERO ───────────────────────────────────────────────── */}
+            <section style={{ position: 'relative', overflow: 'hidden', padding: '5rem 0 6rem' }}>
+                <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
 
-                {/* Content */}
-                <div className="container" style={{ position: 'relative', zIndex: 10, paddingTop: '12rem', paddingBottom: '5rem' }}>
-                    {/* Badge */}
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.375rem 1rem', borderRadius: '9999px', background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)', border: '1px solid rgba(236,194,70,0.2)', marginBottom: '2rem' }}>
-                        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', animation: 'pulse 2s infinite' }}></span>
-                        <span className="label-md text-secondary" style={{ letterSpacing: '0.25em' }}>THE PRIVATE WELLNESS CHAMBERS</span>
-                    </div>
+                        {/* Left Column Text Content */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
 
-                    <h1 className="display-lg text-light-primary" style={{ maxWidth: '52rem', marginBottom: '1.5rem', lineHeight: 1 }}>
-                        Reset. Recharge.{' '}
-                        <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400, display: 'block' }}>Restore.</em>
-                    </h1>
-                    <p className="body-lg text-on-surface-variant" style={{ maxWidth: '36rem', lineHeight: 1.7, marginBottom: '2.5rem' }}>
-                        Immerse yourself in sensory tranquility. Designed for discerning executives seeking deliberate decompression, physiological alignment, and holistic recalibration.
-                    </p>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '4rem' }}>
-                        <button onClick={() => setBookingOpen(true)} className="btn-primary" style={{ padding: '0.875rem 2rem' }}>
-                            Reserve Suite Session
-                        </button>
-                        <a href="https://wa.me/254719506995" target="_blank" rel="noopener"
-                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.875rem 1.75rem', borderRadius: '2px', border: '1px solid rgba(255,255,255,0.2)', color: 'var(--text-light-primary)', textDecoration: 'none', backdropFilter: 'blur(8px)', transition: 'all 0.3s' }}
-                            className="label-md"
-                            onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--primary)'}
-                            onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'}>
-                            <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px' }}>chat</span>
-                            Concierge WhatsApp
-                        </a>
-                    </div>
-
-                    {/* Metrics strip */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', borderTop: '1px solid rgba(236,194,70,0.2)', paddingTop: '2rem', maxWidth: '48rem' }}>
-                        {[['100%', 'Private Suites'], ['Organic', 'Botanical Oils'], ['Rainfall', 'Aromatherapy'], ['0', 'Shared Spaces']].map(([v, l]) => (
-                            <div key={l} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', paddingRight: '1.5rem' }}>
-                                <span className="headline-sm text-primary" style={{ fontWeight: 700 }}>{v}</span>
-                                <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.12em', fontSize: '0.7rem' }}>{l.toUpperCase()}</span>
+                            {/* Top Badge */}
+                            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 1.25rem', borderRadius: '9999px', background: 'var(--surface-container-high)', border: '1px solid var(--gold-border)', backdropFilter: 'blur(12px)', width: 'fit-content' }}>
+                                <span className="pulse-dot"></span>
+                                <span className="label-md text-primary" style={{ letterSpacing: '0.22em' }}>THE PRIVATE WELLNESS CHAMBERS</span>
                             </div>
-                        ))}
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
+                                <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.25em', opacity: 0.8 }}>HOLISTIC BODY &amp; MIND RECALIBRATION</span>
+                                <h1 className="display-lg text-light-primary" style={{ lineHeight: 1.08, margin: 0 }}>
+                                    Reset. Recharge. <br />
+                                    <em style={{ color: 'var(--primary)', fontStyle: 'italic', fontWeight: 400 }}>Restore.</em>
+                                </h1>
+                            </div>
+
+                            <p className="body-lg text-on-surface-variant" style={{ maxWidth: '36rem', lineHeight: 1.75, opacity: 0.9 }}>
+                                Immerse yourself in sensory tranquility. Designed for discerning executives seeking deliberate decompression, physiological alignment, and holistic recalibration inside private soundproof suites.
+                            </p>
+
+                            {/* CTAs */}
+                            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', paddingTop: '0.5rem' }}>
+                                <button onClick={() => setBookingOpen(true)} className="btn-primary" style={{ gap: '0.75rem', padding: '0.875rem 2rem' }}>
+                                    Reserve Suite Session
+                                    <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
+                                </button>
+                                <a href="https://wa.me/254719506995" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.875rem 1.75rem' }}>
+                                    <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px' }}>chat</span>
+                                    Concierge WhatsApp
+                                </a>
+                            </div>
+
+                            {/* Metrics Strip */}
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', borderTop: '1px solid var(--outline-variant)', paddingTop: '1.75rem', marginTop: '0.5rem' }}>
+                                {[
+                                    ['100%', 'Private Suites'],
+                                    ['Organic', 'Botanical Oils'],
+                                    ['Rainfall', 'Aromatherapy'],
+                                    ['0', 'Shared Spaces']
+                                ].map(([v, l]) => (
+                                    <div key={l} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                                        <span className="headline-sm text-primary" style={{ fontWeight: 700 }}>{v}</span>
+                                        <span className="label-md text-on-surface-variant" style={{ letterSpacing: '0.12em', fontSize: '0.68rem' }}>{l.toUpperCase()}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Right Column Image Showcase */}
+                        <div style={{ position: 'relative' }}>
+                            <div className="hero-barber-card" style={{ borderRadius: '16px', overflow: 'hidden', position: 'relative', border: '1px solid var(--gold-border)' }}>
+                                <div className="img-cover" style={{ backgroundImage: `url('${SPA_HERO}')`, height: '32rem', transition: 'transform 0.7s ease' }}
+                                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}></div>
+                                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,15,15,0.75) 0%, transparent 60%)' }}></div>
+
+                                {/* Floating status badge */}
+                                <div className="hero-station-badge" style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', right: '1.5rem', padding: '1.125rem 1.5rem', borderRadius: '12px', background: 'rgba(20,20,20,0.85)', backdropFilter: 'blur(16px)', border: '1px solid rgba(236,194,70,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
+                                        <span className="pulse-dot"></span>
+                                        <div>
+                                            <div className="label-md" style={{ letterSpacing: '0.15em', color: '#ffffff' }}>100% PRIVATE SOUNDPROOF SUITES</div>
+                                            <div className="body-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>Aromatherapy &amp; Neuromuscular Therapy</div>
+                                        </div>
+                                    </div>
+                                    <span className="material-symbols-outlined text-primary" style={{ fontSize: '24px' }}>spa</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -127,7 +160,7 @@ export default function SpaWellness() {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3px', marginBottom: '3px' }}>
                         <div style={{ position: 'relative', overflow: 'hidden', gridColumn: 'span 1', background: 'var(--surface-container)' }}>
                             <div className="img-cover" style={{ backgroundImage: `url('${FEATURE_IMG}')`, height: '22rem' }}></div>
-                            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '22rem', background: 'linear-gradient(to top, var(--surface-container) 10%, rgba(0,0,0,0.3) 60%, transparent 100%)' }}></div>
+                            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%)' }}></div>
                             <span style={{ position: 'absolute', top: '1.25rem', left: '1.25rem', padding: '0.25rem 0.875rem', background: 'var(--primary)', color: 'var(--on-primary)', borderRadius: '2px' }} className="label-md">Most Requested</span>
                         </div>
                         <div style={{ background: 'var(--surface-container)', padding: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

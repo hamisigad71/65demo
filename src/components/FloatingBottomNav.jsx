@@ -25,6 +25,7 @@ export default function FloatingBottomNav() {
         { path: '/', label: 'Home', icon: 'home' },
         { path: '/barber', label: 'Barber', icon: 'content_cut' },
         { path: '/spa', label: 'Spa', icon: 'spa' },
+        { path: '/dining', label: 'Dining', icon: 'restaurant' },
         { path: '/services', label: 'Services', icon: 'grid_view' },
     ]
 

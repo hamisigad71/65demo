@@ -74,52 +74,158 @@ body { overscroll-behavior: none; }
 :root.light-mode {
   /* Surfaces */
   --surface:               #FFFFFF;
-  --surface-dark:          #F9F8F6;
-  --surface-dim:           #E5E2D9;
+  --surface-dark:          #FAF8F5;
+  --surface-dim:           #EFECE6;
   --surface-bright:        #FFFFFF;
   --surface-container-lowest: #FFFFFF;
-  --surface-container-low: #F9F8F6;
-  --surface-container:     #F5F3ED;
-  --surface-container-high:#EFECE5;
-  --surface-container-highest: #E5E2D9;
-  --surface-variant:       #E5E2D9;
-  --background:            #F9F8F6;
+  --surface-container-low: #F6F4EE;
+  --surface-container:     #EFECE6;
+  --surface-container-high:#E7E4DC;
+  --surface-container-highest: #DDD9CF;
+  --surface-variant:       #E7E4DC;
+  --background:            #FAF8F5;
 
   /* On-surface */
-  --on-surface:            #2C2A26;
-  --on-surface-variant:    #5C5648;
+  --on-surface:            #171614;
+  --on-surface-variant:    #544F43;
   --inverse-surface:       #1C1B1A;
-  --inverse-on-surface:    #F5F3ED;
-  --outline:               #8C867A;
-  --outline-variant:       #D1CDBF;
+  --inverse-on-surface:    #FAF8F5;
+  --outline:               #9E9788;
+  --outline-variant:       #C8C2B4;
 
   /* Brand Colors */
-  --primary:               #B08D1E;
+  --primary:               #A68014;
   --on-primary:            #FFFFFF;
-  --primary-container:     #F2E1A6;
-  --on-primary-container:  #423403;
-  --primary-fixed:         #F2E1A6;
-  --primary-fixed-dim:     #D9AD26;
+  --primary-container:     #F3E8C4;
+  --on-primary-container:  #3D2F00;
+  --primary-fixed:         #F3E8C4;
+  --primary-fixed-dim:     #C9A227;
   --inverse-primary:       #FFE08E;
-  --secondary:             #9E8A42;
+  --secondary:             #8C6E15;
   --on-secondary:          #FFFFFF;
-  --secondary-container:   #E9D8A6;
-  --on-secondary-container:#3C320A;
-  --tertiary:              #8A8681;
+  --secondary-container:   #EBDC9F;
+  --on-secondary-container:#352A00;
+  --tertiary:              #66625B;
   --on-tertiary:           #FFFFFF;
 
   /* Text */
-  --text-light-primary:    #1A1918;
-  --text-light-secondary:  #423E33;
-  --text-light-muted:      #736E5F;
+  --text-light-primary:    #141312;
+  --text-light-secondary:  #3B372E;
+  --text-light-muted:      #6B6557;
   --text-dark-primary:     #FFFFFF;
-  --text-dark-muted:       #E5E2D9;
+  --text-dark-muted:       #EFECE6;
 
   /* Special */
-  --gold-border:           rgba(176, 141, 30, 0.2);
-  --gold-border-focus:     #B08D1E;
-  --gold-glow:             rgba(176, 141, 30, 0.08);
+  --gold-border:           rgba(166, 128, 20, 0.22);
+  --gold-border-focus:     #A68014;
+  --gold-glow:             rgba(166, 128, 20, 0.08);
 }
+
+/* Light Mode Specific Overrides */
+:root.light-mode body {
+  background-color: var(--surface-dark);
+  color: var(--on-surface);
+}
+
+:root.light-mode .text-light-primary {
+  color: var(--text-light-primary) !important;
+}
+
+:root.light-mode .text-on-surface-variant {
+  color: var(--on-surface-variant) !important;
+}
+
+:root.light-mode .btn-ghost {
+  background-color: var(--surface-container);
+  color: var(--on-surface);
+  border: 1px solid var(--outline-variant);
+}
+:root.light-mode .btn-ghost:hover {
+  background-color: var(--surface-container-high);
+}
+
+/* Ensure hero overlays remain rich dark gradients so white text and hero imagery stay bold in light mode */
+:root.light-mode .hero-overlay-dark,
+:root.light-mode .hero-overlay {
+  background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.55) 50%, rgba(0,0,0,0.25) 100%) !important;
+}
+
+/* ── Hero Dark Theme Light Mode Overrides ─────────────────── */
+:root.light-mode .hero-dark-theme,
+:root.light-mode .hero-dark-theme .text-light-primary,
+:root.light-mode .hero-dark-theme .headline-lg,
+:root.light-mode .hero-dark-theme .display-lg,
+:root.light-mode .hero-dark-theme h1,
+:root.light-mode .hero-dark-theme h2,
+:root.light-mode .hero-dark-theme h3 {
+  color: #ffffff !important;
+}
+
+:root.light-mode .hero-dark-theme .text-on-surface-variant,
+:root.light-mode .hero-dark-theme p,
+:root.light-mode .hero-dark-theme .body-lg,
+:root.light-mode .hero-dark-theme .body-md,
+:root.light-mode .hero-dark-theme .body-sm {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+:root.light-mode .hero-dark-theme .btn-ghost {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(8px);
+}
+
+:root.light-mode .hero-dark-theme .btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  border-color: var(--primary) !important;
+  color: #ffffff !important;
+}
+
+:root.light-mode .hero-dark-theme .btn-primary {
+  background-color: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
+
+/* ── Barber Hero Light Mode Card & Badge Overrides ────────── */
+:root.light-mode .hero-barber-card {
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.08) !important;
+}
+
+:root.light-mode .hero-station-badge {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid var(--gold-border) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+:root.light-mode .hero-station-badge .label-md {
+  color: var(--text-light-primary) !important;
+}
+
+:root.light-mode .hero-station-badge .body-sm {
+  color: var(--on-surface-variant) !important;
+}
+
+
+
+:root.light-mode .service-card,
+:root.light-mode article,
+:root.light-mode .testimonial-card {
+  box-shadow: none !important;
+}
+
+:root.light-mode .service-card:hover,
+:root.light-mode article:hover,
+:root.light-mode .testimonial-card:hover {
+  box-shadow: none !important;
+}
+
+/* Remove white gradient overlays / shadows on image cards in light mode */
+:root.light-mode .card-img-overlay,
+:root.light-mode .service-card div[style*="linear-gradient"] {
+  display: none !important;
+}
+
 
 /* ── Base Styles ─────────────────────────────────────────── */
 body {
@@ -365,11 +471,15 @@ body {
 }
 
 /* Light mode: no shadows on cards */
-:root.light-mode .service-card {
-  box-shadow: none;
+:root.light-mode .service-card,
+:root.light-mode article,
+:root.light-mode .testimonial-card {
+  box-shadow: none !important;
 }
-:root.light-mode .service-card:hover {
-  box-shadow: none;
+:root.light-mode .service-card:hover,
+:root.light-mode article:hover,
+:root.light-mode .testimonial-card:hover {
+  box-shadow: none !important;
 }
 
 /* Feature cards */

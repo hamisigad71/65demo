@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import BarberStudio from './pages/BarberStudio'
 import SpaWellness from './pages/SpaWellness'
 import ServicesMenu from './pages/ServicesMenu'
+import Dining from './pages/Dining'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/barber" element={<BarberStudio />} />
           <Route path="/spa" element={<SpaWellness />} />
+          <Route path="/dining" element={<Dining />} />
           <Route path="/services" element={<ServicesMenu />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
