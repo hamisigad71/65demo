@@ -8,6 +8,7 @@ import BarberStudio from './pages/BarberStudio'
 import SpaWellness from './pages/SpaWellness'
 import ServicesMenu from './pages/ServicesMenu'
 import Dining from './pages/Dining'
+import Membership from './pages/Membership'
 import Loader from './components/Loader'
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
           <Route path="/spa" element={<SpaWellness />} />
           <Route path="/dining" element={<Dining />} />
           <Route path="/services" element={<ServicesMenu />} />
+          <Route path="/membership" element={<Membership />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

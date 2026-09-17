@@ -91,8 +91,8 @@ export default function Home() {
                             Premium barbering, bespoke spa rituals, continental fine dining, curated cocktails, and total-immersion wellness — architected exclusively for the discerning modern gentleman.
                         </p>
 
-                        <div className="hero-btns">
-                            <Link to="/services" className="btn-primary" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Book An Appointment</Link>
+                        <div className="hero-btns" style={{ display: 'flex', flexDirection: 'row' }}>
+                            <Link to="/services" className="btn-primary" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Book Appointment</Link>
                             <a href="#services" className="btn-ghost" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Explore Services</a>
                         </div>
 
@@ -171,15 +171,18 @@ export default function Home() {
                         <a href="https://wa.me/254719506995" target="_blank" rel="noopener" className="btn-primary">Reserve a Session</a>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3px' }}>
+                    <div className="svc-grid">
 
                         {/* Barbering Atelier */}
-                        <div style={{ background: 'var(--surface-container)', padding: '3rem' }}>
+                        <div className="svc-col" style={{ background: 'var(--surface-container)' }}>
+                            <div className="svc-img-wrap">
+                                <div className="img-cover" style={{ backgroundImage: `url('${BARBER_IMG}')` }}></div>
+                            </div>
                             <div style={{ marginBottom: '2.5rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem', marginBottom: '1rem' }}>
+                                <div className="svc-header">
                                     <span className="material-symbols-outlined text-primary" style={{ fontSize: '20px', fontVariationSettings: "'FILL' 1" }}>content_cut</span>
                                     <span className="label-md text-primary" style={{ letterSpacing: '0.25em' }}>BARBERING ATELIER</span>
-                                    <span style={{ marginLeft: 'auto', padding: '0.2rem 0.75rem', border: '1px solid rgba(236,194,70,0.3)', borderRadius: '2px' }} className="label-md text-secondary">EXECUTIVE LEVEL</span>
+                                    <span className="svc-tag label-md text-secondary">EXECUTIVE LEVEL</span>
                                 </div>
                                 <div style={{ height: '1px', background: 'linear-gradient(to right, var(--primary), rgba(236,194,70,0.15), transparent)' }}></div>
                             </div>
@@ -190,14 +193,14 @@ export default function Home() {
                                         onMouseEnter={e => { e.currentTarget.style.paddingLeft = '1rem'; e.currentTarget.querySelector('.svc-bar').style.opacity = '1'; }}
                                         onMouseLeave={e => { e.currentTarget.style.paddingLeft = '0'; e.currentTarget.querySelector('.svc-bar').style.opacity = '0'; }}>
                                         <div className="svc-bar" style={{ position: 'absolute', left: 0, top: '1.75rem', bottom: '1.75rem', width: '2px', background: 'var(--primary)', opacity: 0, transition: 'opacity 0.3s' }}></div>
-                                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', marginBottom: '0.625rem' }}>
-                                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                                        <div className="svc-item-hdr">
+                                            <div className="svc-item-title-wrap">
                                                 <span style={{ color: 'var(--primary)', opacity: 0.5, fontSize: '0.8rem', fontWeight: 700, minWidth: '1.5rem', paddingTop: '0.2rem' }}>0{i + 1}</span>
                                                 <h4 className="title-md text-light-primary" style={{ margin: 0 }}>{s.name}</h4>
                                             </div>
-                                            <span style={{ flexShrink: 0, padding: '0.2rem 0.75rem', background: 'rgba(236,194,70,0.08)', border: '1px solid rgba(236,194,70,0.2)', borderRadius: '2px', whiteSpace: 'nowrap' }} className="label-md text-primary">{s.price.replace('Starting from ', '')}</span>
+                                            <span className="svc-item-price-wrap label-md text-primary">{s.price.replace('Starting from ', '')}</span>
                                         </div>
-                                        <p className="body-sm text-on-surface-variant" style={{ lineHeight: 1.7, margin: '0 0 0 2.5rem' }}>{s.desc}</p>
+                                        <p className="svc-item-desc body-sm text-on-surface-variant">{s.desc}</p>
                                     </div>
                                 ))}
                                 <button onClick={() => setBarberExpanded(!barberExpanded)} className="view-more-btn">
@@ -206,22 +209,24 @@ export default function Home() {
                                 </button>
                             </div>
                             <a href="https://wa.me/254719506995" target="_blank" rel="noopener"
-                                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', marginTop: '2.5rem', padding: '0.875rem', border: '1px solid rgba(236,194,70,0.35)', borderRadius: '2px', color: 'var(--primary)', textDecoration: 'none', transition: 'all 0.25s', background: 'transparent' }}
-                                className="label-md"
+                                className="svc-btn label-md"
                                 onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = 'var(--on-primary)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
                                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.borderColor = 'rgba(236,194,70,0.35)'; }}>
                                 <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>diamond</span>
-                                BOOK BARBERING SESSION
+                                BOOK BARBERING
                             </a>
                         </div>
 
                         {/* Spa & Wellness */}
-                        <div style={{ background: 'var(--surface-container-high)', padding: '3rem' }}>
+                        <div className="svc-col" style={{ background: 'var(--surface-container-high)' }}>
+                            <div className="svc-img-wrap">
+                                <div className="img-cover" style={{ backgroundImage: `url('${SPA_IMG}')` }}></div>
+                            </div>
                             <div style={{ marginBottom: '2.5rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.875rem', marginBottom: '1rem' }}>
+                                <div className="svc-header">
                                     <span className="material-symbols-outlined text-primary" style={{ fontSize: '20px', fontVariationSettings: "'FILL' 1" }}>spa</span>
                                     <span className="label-md text-primary" style={{ letterSpacing: '0.25em' }}>SPA &amp; WELLNESS</span>
-                                    <span style={{ marginLeft: 'auto', padding: '0.2rem 0.75rem', border: '1px solid rgba(236,194,70,0.3)', borderRadius: '2px' }} className="label-md text-secondary">PRIVATE SUITES</span>
+                                    <span className="svc-tag label-md text-secondary">PRIVATE SUITES</span>
                                 </div>
                                 <div style={{ height: '1px', background: 'linear-gradient(to right, var(--primary), rgba(236,194,70,0.15), transparent)' }}></div>
                             </div>
@@ -232,14 +237,14 @@ export default function Home() {
                                         onMouseEnter={e => { e.currentTarget.style.paddingLeft = '1rem'; e.currentTarget.querySelector('.svc-bar').style.opacity = '1'; }}
                                         onMouseLeave={e => { e.currentTarget.style.paddingLeft = '0'; e.currentTarget.querySelector('.svc-bar').style.opacity = '0'; }}>
                                         <div className="svc-bar" style={{ position: 'absolute', left: 0, top: '1.75rem', bottom: '1.75rem', width: '2px', background: 'var(--primary)', opacity: 0, transition: 'opacity 0.3s' }}></div>
-                                        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', marginBottom: '0.625rem' }}>
-                                            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                                        <div className="svc-item-hdr">
+                                            <div className="svc-item-title-wrap">
                                                 <span style={{ color: 'var(--primary)', opacity: 0.5, fontSize: '0.8rem', fontWeight: 700, minWidth: '1.5rem', paddingTop: '0.2rem' }}>0{i + 1}</span>
                                                 <h4 className="title-md text-light-primary" style={{ margin: 0 }}>{s.name}</h4>
                                             </div>
-                                            <span style={{ flexShrink: 0, padding: '0.2rem 0.75rem', background: 'rgba(236,194,70,0.08)', border: '1px solid rgba(236,194,70,0.2)', borderRadius: '2px', whiteSpace: 'nowrap' }} className="label-md text-primary">{s.price.replace('Starting from ', '')}</span>
+                                            <span className="svc-item-price-wrap label-md text-primary">{s.price.replace('Starting from ', '')}</span>
                                         </div>
-                                        <p className="body-sm text-on-surface-variant" style={{ lineHeight: 1.7, margin: '0 0 0 2.5rem' }}>{s.desc}</p>
+                                        <p className="svc-item-desc body-sm text-on-surface-variant">{s.desc}</p>
                                     </div>
                                 ))}
                                 <button onClick={() => setSpaExpanded(!spaExpanded)} className="view-more-btn">
@@ -248,8 +253,7 @@ export default function Home() {
                                 </button>
                             </div>
                             <a href="https://wa.me/254719506995" target="_blank" rel="noopener"
-                                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.625rem', marginTop: '2.5rem', padding: '0.875rem', border: '1px solid rgba(236,194,70,0.35)', borderRadius: '2px', color: 'var(--primary)', textDecoration: 'none', transition: 'all 0.25s', background: 'transparent' }}
-                                className="label-md"
+                                className="svc-btn label-md"
                                 onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = 'var(--on-primary)'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
                                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.borderColor = 'rgba(236,194,70,0.35)'; }}>
                                 <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>self_care</span>
@@ -555,10 +559,8 @@ export default function Home() {
 
                                 {/* Action Button */}
                                 <div style={{ paddingTop: '1.5rem' }}>
-                                    <a
-                                        href="https://wa.me/254719506995"
-                                        target="_blank"
-                                        rel="noopener"
+                                    <Link
+                                        to="/membership"
                                         className="btn-primary vip-btn"
                                         style={{
                                             padding: '1.1rem 2.25rem',
@@ -570,7 +572,7 @@ export default function Home() {
                                     >
                                         <span>EXPLORE MEMBERSHIP</span>
                                         <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_forward</span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
 

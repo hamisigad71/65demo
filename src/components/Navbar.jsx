@@ -8,6 +8,7 @@ const navLinks = [
   { to: '/spa', label: 'Spa' },
   { to: '/dining', label: 'Dining' },
   { to: '/services', label: 'Services' },
+  { to: '/membership', label: 'Membership' },
 ]
 
 export default function Navbar() {
