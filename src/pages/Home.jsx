@@ -16,17 +16,17 @@ const experienceCards = [
 ]
 
 const barberServices = [
-    { name: 'Executive Haircut & Styling', desc: 'Consultation, precision razor fade or tailored scissor cut, botanical shampoo wash, and finished blow dry.', price: 'Starting from KES 2,500' },
-    { name: 'Beard Sculpting & Conditioning', desc: 'Geometric beard contouring, natural oil hydration bath, and warm ionic comb treatment.', price: 'Starting from KES 1,800' },
-    { name: 'Royal Hot Towel Shave', desc: 'Triple steamed eucalyptus towel infusions, badger brush pre-shave cream, feather razor finish, and cold compress.', price: 'Starting from KES 2,200' },
-    { name: 'Full Executive Grooming Package', desc: 'Haircut, royal shave, detoxifying charcoal facial mask, ear-nose grooming, and shoulder acupressure.', price: 'Starting from KES 5,500' },
+    { name: 'Executive Haircut & Styling', desc: 'Consultation, precision razor fade or tailored scissor cut, botanical shampoo wash, and finished blow dry.', price: 'Starting from KES 2,500', img: 'https://images.unsplash.com/photo-1493256338651-d82f7acb2b38?q=80&w=600&auto=format&fit=crop' },
+    { name: 'Beard Sculpting & Conditioning', desc: 'Geometric beard contouring, natural oil hydration bath, and warm ionic comb treatment.', price: 'Starting from KES 1,800', img: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600&auto=format&fit=crop' },
+    { name: 'Royal Hot Towel Shave', desc: 'Triple steamed eucalyptus towel infusions, badger brush pre-shave cream, feather razor finish, and cold compress.', price: 'Starting from KES 2,200', img: 'https://images.unsplash.com/photo-1517832606299-7ae9b720a186?q=80&w=600&auto=format&fit=crop' },
+    { name: 'Full Executive Grooming Package', desc: 'Haircut, royal shave, detoxifying charcoal facial mask, ear-nose grooming, and shoulder acupressure.', price: 'Starting from KES 5,500', img: 'https://images.unsplash.com/photo-1536520002442-39764a41e987?q=80&w=600&auto=format&fit=crop' },
 ]
 
 const spaServices = [
-    { name: 'Deep Tissue Recovery Massage', desc: 'Intensive myofascial release aimed at chronic muscular tension, travel stiffness, and posture realignment.', price: 'Starting from KES 4,500' },
-    { name: 'Therapeutic Hot Stone Ritual', desc: 'Warmed basalt stones coupled with infused organic essential oils to promote deep circulatory release.', price: 'Starting from KES 5,000' },
-    { name: 'Executive Anti-Stress Facial', desc: 'Ultrasonic pore cleanse, hyaluronic hydration mask, and micro-current lifting for fatigued executive skin.', price: 'Starting from KES 4,000' },
-    { name: 'Detox Pedicure & Foot Reflex', desc: 'Himalayan salt soak, cuticle cleanup, calf exfoliation, and 30-minute acupressure foot massage.', price: 'Starting from KES 3,500' },
+    { name: 'Deep Tissue Recovery Massage', desc: 'Intensive myofascial release aimed at chronic muscular tension, travel stiffness, and posture realignment.', price: 'Starting from KES 4,500', img: 'https://images.unsplash.com/photo-1578413142862-c10be6467b8b?q=80&w=600&auto=format&fit=crop' },
+    { name: 'Therapeutic Hot Stone Ritual', desc: 'Warmed basalt stones coupled with infused organic essential oils to promote deep circulatory release.', price: 'Starting from KES 5,000', img: 'https://images.unsplash.com/photo-1759216853271-15ce47d0c910?q=80&w=600&auto=format&fit=crop' },
+    { name: 'Executive Anti-Stress Facial', desc: 'Ultrasonic pore cleanse, hyaluronic hydration mask, and micro-current lifting for fatigued executive skin.', price: 'Starting from KES 4,000', img: 'https://images.unsplash.com/photo-1759216853310-7d315a1fd07d?q=80&w=600&auto=format&fit=crop' },
+    { name: 'Detox Pedicure & Foot Reflex', desc: 'Himalayan salt soak, cuticle cleanup, calf exfoliation, and 30-minute acupressure foot massage.', price: 'Starting from KES 3,500', img: 'https://images.unsplash.com/photo-1769011218290-6ab77ae85883?q=80&w=600&auto=format&fit=crop' },
 ]
 
 const features = [
@@ -45,6 +45,10 @@ const testimonials = [
 export default function Home() {
     const [barberExpanded, setBarberExpanded] = useState(false)
     const [spaExpanded, setSpaExpanded] = useState(false)
+    const [expandedFeatures, setExpandedFeatures] = useState({})
+
+    const toggleFeature = (num) => setExpandedFeatures(prev => ({ ...prev, [num]: !prev[num] }))
+
     const [activeTestimonial, setActiveTestimonial] = useState(0)
     const testimonialRef = useRef(null)
 
@@ -72,8 +76,8 @@ export default function Home() {
                 </div>
 
                 {/* Content */}
-                <div className="container" style={{ position: 'relative', zIndex: 10, paddingTop: '9rem', paddingBottom: '4rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <div style={{ maxWidth: '44rem' }}>
+                <div className="container hero-content-wrapper" style={{ position: 'relative', zIndex: 10, paddingTop: '9rem', paddingBottom: '4rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <div className="hero-text-container" style={{ maxWidth: '44rem' }}>
                         {/* Badge */}
                         <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.375rem 1rem', borderRadius: '9999px', background: 'color-mix(in srgb, var(--surface-container) 80%, transparent)', backdropFilter: 'blur(12px)' }}>
                             <span className="material-symbols-outlined text-primary" style={{ fontSize: '18px', fontVariationSettings: "'FILL' 1" }}>location_on</span>
@@ -91,13 +95,13 @@ export default function Home() {
                             Premium barbering, bespoke spa rituals, continental fine dining, curated cocktails, and total-immersion wellness — architected exclusively for the discerning modern gentleman.
                         </p>
 
-                        <div className="hero-btns" style={{ display: 'flex', flexDirection: 'row' }}>
-                            <Link to="/services" className="btn-primary" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Book Appointment</Link>
-                            <a href="#services" className="btn-ghost" style={{ flex: 1, justifyContent: 'center', textAlign: 'center' }}>Explore Services</a>
+                        <div className="hero-btns" style={{ display: 'flex' }}>
+                            <Link to="/services" className="btn-primary" style={{ justifyContent: 'center', textAlign: 'center' }}>Book Appointment</Link>
+                            <a href="#services" className="btn-ghost" style={{ justifyContent: 'center', textAlign: 'center' }}>Explore Services</a>
                         </div>
 
                         {/* Live */}
-                        <div className="hero-live body-sm text-on-surface-variant" style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                        <div className="hero-live body-sm text-on-surface-variant" style={{ display: 'flex', gap: '0.75rem' }}>
                             <span className="pulse-dot" style={{ marginTop: '0.25rem' }}></span>
                             <span>Private Suites Open Today • Valet Concierge on Nyeri Close</span>
                         </div>
@@ -189,18 +193,28 @@ export default function Home() {
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 {(barberExpanded ? barberServices : barberServices.slice(0, 2)).map((s, i) => (
                                     <div key={s.name}
-                                        style={{ position: 'relative', padding: '1.75rem 0', borderBottom: '1px solid var(--outline-variant)', transition: 'padding-left 0.3s', paddingLeft: '0', cursor: 'default' }}
+                                        style={{ position: 'relative', padding: '1.5rem 0', borderBottom: '1px solid var(--outline-variant)', transition: 'padding-left 0.3s', paddingLeft: '0', cursor: 'default', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
                                         onMouseEnter={e => { e.currentTarget.style.paddingLeft = '1rem'; e.currentTarget.querySelector('.svc-bar').style.opacity = '1'; }}
                                         onMouseLeave={e => { e.currentTarget.style.paddingLeft = '0'; e.currentTarget.querySelector('.svc-bar').style.opacity = '0'; }}>
-                                        <div className="svc-bar" style={{ position: 'absolute', left: 0, top: '1.75rem', bottom: '1.75rem', width: '2px', background: 'var(--primary)', opacity: 0, transition: 'opacity 0.3s' }}></div>
-                                        <div className="svc-item-hdr">
-                                            <div className="svc-item-title-wrap">
-                                                <span style={{ color: 'var(--primary)', opacity: 0.5, fontSize: '0.8rem', fontWeight: 700, minWidth: '1.5rem', paddingTop: '0.2rem' }}>0{i + 1}</span>
-                                                <h4 className="title-md text-light-primary" style={{ margin: 0 }}>{s.name}</h4>
+                                        <div className="svc-bar" style={{ position: 'absolute', left: 0, top: '1.5rem', bottom: '1.5rem', width: '2px', background: 'var(--primary)', opacity: 0, transition: 'opacity 0.3s' }}></div>
+
+                                        <div style={{ width: '100%', aspectRatio: '1', borderRadius: '4px', overflow: 'hidden' }}>
+                                            <div className="img-cover" style={{ backgroundImage: `url('${s.img}')`, height: '100%', transition: 'transform 0.5s' }}
+                                                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                                                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                                             </div>
-                                            <span className="svc-item-price-wrap label-md text-primary">{s.price.replace('Starting from ', '')}</span>
                                         </div>
-                                        <p className="svc-item-desc body-sm text-on-surface-variant">{s.desc}</p>
+
+                                        <div>
+                                            <div className="svc-item-hdr" style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.75rem' }}>
+                                                <div className="svc-item-title-wrap" style={{ display: 'flex', gap: '0.4rem', alignItems: 'flex-start' }}>
+                                                    <span style={{ color: 'var(--primary)', opacity: 0.5, fontSize: '0.8rem', fontWeight: 700, minWidth: '1.2rem', paddingTop: '0.1rem' }}>0{i + 1}</span>
+                                                    <h4 className="text-light-primary" style={{ margin: 0, lineHeight: 1.25, fontSize: 'clamp(0.85rem, 2.5vw, 1.15rem)', fontWeight: 600 }}>{s.name}</h4>
+                                                </div>
+                                                <span className="svc-item-price-wrap text-primary" style={{ border: '1px solid rgba(236,194,70,0.3)', padding: '0.25rem 0.6rem', borderRadius: '2px', fontSize: '0.75rem', fontWeight: 500 }}>{s.price.replace('Starting from ', '')}</span>
+                                            </div>
+                                            <p className="svc-item-desc body-sm text-on-surface-variant" style={{ margin: 0, fontSize: '0.85rem' }}>{s.desc}</p>
+                                        </div>
                                     </div>
                                 ))}
                                 <button onClick={() => setBarberExpanded(!barberExpanded)} className="view-more-btn">
@@ -233,18 +247,28 @@ export default function Home() {
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 {(spaExpanded ? spaServices : spaServices.slice(0, 2)).map((s, i) => (
                                     <div key={s.name}
-                                        style={{ position: 'relative', padding: '1.75rem 0', borderBottom: '1px solid var(--outline-variant)', transition: 'padding-left 0.3s', paddingLeft: '0', cursor: 'default' }}
+                                        style={{ position: 'relative', padding: '1.5rem 0', borderBottom: '1px solid var(--outline-variant)', transition: 'padding-left 0.3s', paddingLeft: '0', cursor: 'default', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
                                         onMouseEnter={e => { e.currentTarget.style.paddingLeft = '1rem'; e.currentTarget.querySelector('.svc-bar').style.opacity = '1'; }}
                                         onMouseLeave={e => { e.currentTarget.style.paddingLeft = '0'; e.currentTarget.querySelector('.svc-bar').style.opacity = '0'; }}>
-                                        <div className="svc-bar" style={{ position: 'absolute', left: 0, top: '1.75rem', bottom: '1.75rem', width: '2px', background: 'var(--primary)', opacity: 0, transition: 'opacity 0.3s' }}></div>
-                                        <div className="svc-item-hdr">
-                                            <div className="svc-item-title-wrap">
-                                                <span style={{ color: 'var(--primary)', opacity: 0.5, fontSize: '0.8rem', fontWeight: 700, minWidth: '1.5rem', paddingTop: '0.2rem' }}>0{i + 1}</span>
-                                                <h4 className="title-md text-light-primary" style={{ margin: 0 }}>{s.name}</h4>
+                                        <div className="svc-bar" style={{ position: 'absolute', left: 0, top: '1.5rem', bottom: '1.5rem', width: '2px', background: 'var(--primary)', opacity: 0, transition: 'opacity 0.3s' }}></div>
+
+                                        <div style={{ width: '100%', aspectRatio: '1', borderRadius: '4px', overflow: 'hidden' }}>
+                                            <div className="img-cover" style={{ backgroundImage: `url('${s.img}')`, height: '100%', transition: 'transform 0.5s' }}
+                                                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+                                                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
                                             </div>
-                                            <span className="svc-item-price-wrap label-md text-primary">{s.price.replace('Starting from ', '')}</span>
                                         </div>
-                                        <p className="svc-item-desc body-sm text-on-surface-variant">{s.desc}</p>
+
+                                        <div>
+                                            <div className="svc-item-hdr" style={{ marginBottom: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.75rem' }}>
+                                                <div className="svc-item-title-wrap" style={{ display: 'flex', gap: '0.4rem', alignItems: 'flex-start' }}>
+                                                    <span style={{ color: 'var(--primary)', opacity: 0.5, fontSize: '0.8rem', fontWeight: 700, minWidth: '1.2rem', paddingTop: '0.1rem' }}>0{i + 1}</span>
+                                                    <h4 className="text-light-primary" style={{ margin: 0, lineHeight: 1.25, fontSize: 'clamp(0.85rem, 2.5vw, 1.15rem)', fontWeight: 600 }}>{s.name}</h4>
+                                                </div>
+                                                <span className="svc-item-price-wrap text-primary" style={{ border: '1px solid rgba(236,194,70,0.3)', padding: '0.25rem 0.6rem', borderRadius: '2px', fontSize: '0.75rem', fontWeight: 500 }}>{s.price.replace('Starting from ', '')}</span>
+                                            </div>
+                                            <p className="svc-item-desc body-sm text-on-surface-variant" style={{ margin: 0, fontSize: '0.85rem' }}>{s.desc}</p>
+                                        </div>
                                     </div>
                                 ))}
                                 <button onClick={() => setSpaExpanded(!spaExpanded)} className="view-more-btn">
@@ -275,16 +299,30 @@ export default function Home() {
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }} className="features-grid">
                         {features.map(f => (
-                            <div key={f.num} className="feature-card" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                            <div key={f.num} className="feature-card" style={{ display: 'flex', flexDirection: 'column', background: 'rgba(255, 255, 255, 0.02)', padding: '1.25rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)', minHeight: expandedFeatures[f.num] ? 'auto' : '0', justifyContent: 'space-between', gap: '0.75rem', overflow: 'hidden', boxSizing: 'border-box' }}>
                                 <div>
-                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
-                                        <span className="headline-sm text-primary" style={{ fontWeight: 600 }}>{f.num}</span>
-                                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '24px' }}>{f.icon}</span>
+                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                                        <span className="headline-sm text-primary" style={{ fontWeight: 600, fontSize: '1.25rem' }}>{f.num}</span>
+                                        <span className="material-symbols-outlined text-primary" style={{ fontSize: '20px' }}>{f.icon}</span>
                                     </div>
-                                    <h3 className="title-md text-light-primary" style={{ marginBottom: '0.75rem' }}>{f.title}</h3>
-                                    <p className="body-sm text-on-surface-variant" style={{ lineHeight: 1.7 }}>{f.desc}</p>
+                                    <h3 className="title-md text-light-primary" style={{ marginBottom: '0.5rem', lineHeight: 1.25, fontSize: 'clamp(0.85rem, 2.5vw, 1rem)', wordBreak: 'break-word', overflowWrap: 'break-word' }}>{f.title}</h3>
+
+                                    <div style={{ position: 'relative' }}>
+                                        <p className="body-sm text-on-surface-variant" style={{
+                                            lineHeight: 1.6,
+                                            fontSize: '0.8rem',
+                                            margin: 0,
+                                            display: expandedFeatures[f.num] ? 'block' : '-webkit-box',
+                                            WebkitLineClamp: 2,
+                                            WebkitBoxOrient: 'vertical',
+                                            overflow: 'hidden'
+                                        }}>
+                                            {f.desc}
+                                        </p>
+                                    </div>
+                                    <button onClick={() => toggleFeature(f.num)} style={{ background: 'none', border: 'none', color: 'var(--primary)', fontSize: '0.75rem', padding: '0.25rem 0 0 0', marginTop: '0.25rem', cursor: 'pointer', textAlign: 'left', textDecoration: 'underline' }}>{expandedFeatures[f.num] ? 'Read less' : 'Read more'}</button>
                                 </div>
-                                <div style={{ width: '2rem', height: '2px', backgroundColor: 'rgba(236,194,70,0.4)' }}></div>
+                                <div style={{ width: '2rem', height: '2px', backgroundColor: 'rgba(236,194,70,0.4)', marginTop: expandedFeatures[f.num] ? '1rem' : '0' }}></div>
                             </div>
                         ))}
                     </div>
